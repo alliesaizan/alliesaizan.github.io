@@ -1,0 +1,76 @@
+---
+title: "What makes comic book characters popular?"
+author: "Allie Saizan"
+date: '2017-08-17'
+output: pdf_document
+slug: my-first-post
+tags: []
+categories: []
+---
+
+
+Comic books have been a super important part of my life for the past decade. Comics have figured differently in my life over time, but they've maintained a lasting influence over my pop culture choices. As I write this, a tiny Spider-man is watching over my shoulder.
+
+In that spirit, my first post will focus on how comic book characters have changed throughout history. In particular, I will focus on how gender and sexuality representation has changed over time. For this analysis, I am using a comics database from 538's Github page. 23,272 comic book characters appear in this database. The database covers years 1939-2015. 
+
+There are no duplicate characters, and for the most part, characters are identified by  their "legal" names, not by their superhero aliases. The most popular characters, such as my good friend Spidey, are listed with both names.
+
+
+```{r, include=FALSE, echo=FALSE}
+library(dplyr); library(tidyr); library(plotly); library(ggplot2)
+
+load("/Users/alliesaizan/Downloads/comic_characters.rda")
+```
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+group.colors <- c(Marvel = "red4", DC= "royalblue4")
+ggplot(data=comic_characters, aes(x = year, fill=publisher)) + geom_histogram(binwidth=1) +
+  scale_fill_manual(values=group.colors) + ggtitle("Comic book characters introduced each year") + theme_classic()
+
+```
+
+
+DC and Marvel both have steadily increased the number of new characters introduced each year. However, over the past 70 years, DC has published more new characters each year than Marvel. This discrepancy is likely caused by a 1986 reboot which released new instantiations of many DC characters, and introduced new ones. The historgram below reflects this spike. 
+
+DC has released an especially high number of characters coinciding with the "New 52" series, indicated by the largest post-2000 spike. After years of falling sales DC chose to follow the Marvel model and reboot its major characters. Such a massive reboot generally follows an all-encompassing galactic soap opera,which retcons the entire universe of character storylines. Has this move been productive?
+
+It remains unclear whether releasing more characters each year corresponds to higher diversity among characters. Is Marvel at a disadvantage because it releases less new chaacters each year? Or is it focusing on quality over quantity? 
+
+As comic book characters have become increasingly popular, the question of gender representation becomes increasingly relevant. 
+
+
+```{r, echo=FALSE, warning=FALSE, message = FALSE}
+comic_characters$female <- as.numeric(comic_characters$sex == "Female Characters")
+gender <- aggregate(comic_characters$female, by=list(comic_characters$year, comic_characters$publisher), FUN=mean, na.rm=TRUE)
+gender <- rename(gender, year=Group.1, publisher=Group.2, pct_fem=x)
+
+ggplot(data=gender, aes(y=pct_fem, x = year, colour=publisher)) + 
+  geom_smooth(se=FALSE) + scale_color_manual(values = c("red4", "royalblue4")) +
+  labs(title = "Percent of new female characters \nintroduced each year", x = "Year", y = 'Percent women') +
+  theme(plot.title = element_text(hjust = 0.5, face="bold")) + theme_classic()
+
+```
+
+
+Until 1960, DC consistently released more new female characters than Marvel. Possible explanations for that lead include title and secondary characters in the Wonder Woman series, which first appeared in the 1930s. However, the data show that post-1960, Marvel maintained a consistent edge over DC in releasing more female characters. This lead is reversed post-2000, which again, might correspond to the release of the New 52 and accompanying new characters. 
+
+At the highest levels, women represent 30% of Marvel's new roster. A worrying post-2000 dip indicates that female characters have been introduced less frequently in recent years.
+
+Similar questions arise about LGBT representation over time.
+
+```{r, echo=FALSE, warning=FALSE, message = FALSE}
+comic_characters$lgbt <- as.numeric(is.na(comic_characters$gsm) == FALSE)
+lgbt <- aggregate(comic_characters$lgbt, by=list(comic_characters$year, comic_characters$publisher), FUN=mean, na.rm=TRUE)
+lgbt <-  rename(lgbt, year=Group.1, publisher=Group.2, pct_lgbt=x)
+
+ggplot(data=lgbt, aes(y=pct_lgbt, x = year, colour=publisher)) + 
+  geom_smooth(se = FALSE) + scale_color_manual(values = c("red4", "royalblue4")) +
+  labs(title = "Percent of new LGBT characters \nintroduced each year", x = "Year", y = 'Percent LGBT') +
+  theme(plot.title = element_text(hjust = 0.5, face="bold")) + theme_classic()
+
+#scale_colour_brewer(palette= "Set1", direction=-1)
+
+```
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on In That Number</title>
+    <link>/page/</link>
+    <description>Recent content in Pages on In That Number</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	<atom:link href="/page/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About me</title>
+      <link>/page/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/about/</guid>
+      <description>Background
+My name is Allie, and I am a researcher at a think tank in DC. I grew up in New Orleans, hung out in Texas for a minute, and ended up in our nation&amp;rsquo;s capital. I do miss the deep South, and all the good food/vibes that you just can&amp;rsquo;t get anywhere else.
+I have a background in economics. I was enamored by the way that economics imposed order around seemingly inexplicable human behavior.</description>
+    </item>
+    
+  </channel>
+</rss>
