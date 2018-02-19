@@ -5,10 +5,20 @@
     <link>/</link>
     <description>Recent content on In That Number</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 17 Aug 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Feb 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>A first dive into comics data</title>
+      <link>/post/comic-characters/</link>
+      <pubDate>Mon, 19 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/comic-characters/</guid>
+      <description>I’m still getting a feel for the right questions to ask. Comic books have been a super important part of my life for the past decade. Comics have figured differently in my life over time, but they’ve maintained a lasting influence over my pop culture choices. As I write this, a tiny Spider-man is watching over my shoulder.
+In that spirit, my first post will focus on how comic book characters have changed throughout history.</description>
+    </item>
     
     <item>
       <title>What makes comic book characters popular?</title>

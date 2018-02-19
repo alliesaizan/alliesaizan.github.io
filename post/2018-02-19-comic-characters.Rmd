@@ -1,15 +1,14 @@
 ---
-title: "What makes comic book characters popular?"
-author: "Allie Saizan"
-date: '2017-08-17'
-output: pdf_document
-slug: my-first-post
-tags: []
+title: A first dive into comics data
+author: A Saizan
+date: '2018-02-19'
+slug: comic-characters
 categories: []
+output: html_document
+tags: []
 ---
 
-
-Comic books have been a super important part of my life for the past decade. Comics have figured differently in my life over time, but they've maintained a lasting influence over my pop culture choices. As I write this, a tiny Spider-man is watching over my shoulder.
+I'm still getting a feel for the right questions to ask. Comic books have been a super important part of my life for the past decade. Comics have figured differently in my life over time, but they've maintained a lasting influence over my pop culture choices. As I write this, a tiny Spider-man is watching over my shoulder.
 
 In that spirit, my first post will focus on how comic book characters have changed throughout history. In particular, I will focus on how gender and sexuality representation has changed over time. For this analysis, I am using a comics database from 538's Github page. 23,272 comic book characters appear in this database. The database covers years 1939-2015. 
 
@@ -19,7 +18,7 @@ There are no duplicate characters, and for the most part, characters are identif
 ```{r, include=FALSE, echo=FALSE}
 library(dplyr); library(tidyr); library(plotly); library(ggplot2)
 
-load("/Users/alliesaizan/Downloads/comic_characters.rda")
+load("/Users/alliesaizan/Documents/R Tinkering/comic_characters.rda")
 ```
 
 
@@ -72,5 +71,4 @@ ggplot(data=lgbt, aes(y=pct_lgbt, x = year, colour=publisher)) +
 #scale_colour_brewer(palette= "Set1", direction=-1)
 
 ```
-
 

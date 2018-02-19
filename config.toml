@@ -54,8 +54,8 @@ pygmentCodeFences = true
 
 [[menu.main]]
     parent = "Blog"
-    name = "What makes comic book characters popular?"
-    url = "post/2017-07-24-comic-characters.rmd"
+    name = "A first dive into comics data"
+    url = "post/2018-02-19-comic-characters"
     weight = 2
 
 
