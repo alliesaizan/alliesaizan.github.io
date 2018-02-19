@@ -45,16 +45,6 @@ pygmentCodeFences = true
     url = "page/about/"
     weight = 3
 
-#[[menu.main]]
-#    identifier = "samples"
-#    name = "Samples"
-#    weight = 2
-
-#[[menu.main]]
-#    parent = "samples"
-#    name = "Big Image Sample"
-#    url = "post/2017-03-07-bigimg-sample"
-#    weight = 1
 
 [[menu.main]]
     parent = "Blog"
@@ -65,7 +55,7 @@ pygmentCodeFences = true
 [[menu.main]]
     parent = "Blog"
     name = "What makes comic book characters popular?"
-    url = "post/2017-07-24-comic-characters"
+    url = "post/2017-07-24-comic-characters.rmd"
     weight = 2
 
 
