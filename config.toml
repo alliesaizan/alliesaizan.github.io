@@ -58,6 +58,11 @@ pygmentCodeFences = true
     url = "post/2018-02-19-comic-characters"
     weight = 2
 
+[[menu.main]]
+    parent = "Blog"
+    name = "Test"
+    url = "post/2018-02-20-test-post"
+    weight = 2
 
 #[[menu.main]]
 #    parent = "samples"
