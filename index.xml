@@ -11,20 +11,11 @@
     
     
     <item>
-      <title>Test post</title>
-      <link>/post/test-post/</link>
+      <title>A dive into comics data</title>
+      <link>/post/a-dive-into-comics-data/</link>
       <pubDate>Tue, 20 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/test-post/</guid>
-      <description>Hello, this is a test.</description>
-    </item>
-    
-    <item>
-      <title>A first dive into comics data</title>
-      <link>/post/comic-characters/</link>
-      <pubDate>Mon, 19 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/comic-characters/</guid>
+      <guid>/post/a-dive-into-comics-data/</guid>
       <description>I’m still getting a feel for the right questions to ask. Comic books have been a super important part of my life for the past decade. Comics have figured differently in my life over time, but they’ve maintained a lasting influence over my pop culture choices. As I write this, a tiny Spider-man is watching over my shoulder.
 In that spirit, my first post will focus on how comic book characters have changed throughout history.</description>
     </item>
