@@ -1,0 +1,10 @@
+---
+title: Test post
+author: A Saizan
+date: '2018-02-20'
+slug: test-post
+categories: []
+tags: []
+---
+
+Hello, this is a test.
