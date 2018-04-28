@@ -16,9 +16,9 @@ There are no duplicate characters, and for the most part, characters are identif
 
 
 ```{r, include=FALSE, echo=FALSE}
-library(dplyr); library(tidyr); library(plotly); library(ggplot2)
+library(dplyr); library(tidyr); library(ggplot2); library(plotly)
 
-load("/Users/alliesaizan/Documents/R Tinkering/Comic book analysis/comic_characters.rda")
+comic_characters <- read.csv("/Users/alliesaizan/Documents/R Tinkering/Comic book analysis/comic_characters.csv", sep = ",")
 ```
 
 

@@ -5,25 +5,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-  <title>About me</title>
-  <meta property="og:title" content="About me" />
-  <meta name="twitter:title" content="About me" />
-  <meta name="description" content="Background
-My name is Allie, and I am a researcher at a think tank in DC. I grew up in New Orleans, hung out in Texas for a minute, and ended up in our nation&rsquo;s capital. I do miss the deep South, and all the good food/vibes that you just can&rsquo;t get anywhere else.
-I have a background in economics. I was enamored by the way that economics imposed order around seemingly inexplicable human behavior.">
-  <meta property="og:description" content="Background
-My name is Allie, and I am a researcher at a think tank in DC. I grew up in New Orleans, hung out in Texas for a minute, and ended up in our nation&rsquo;s capital. I do miss the deep South, and all the good food/vibes that you just can&rsquo;t get anywhere else.
-I have a background in economics. I was enamored by the way that economics imposed order around seemingly inexplicable human behavior.">
-  <meta name="twitter:description" content="Background
-My name is Allie, and I am a researcher at a think tank in DC. I grew up in New Orleans, hung out in Texas for a minute, and ended up in our nation&rsquo;s capital. I do miss the deep …">
+  <title>A dive into comics data</title>
+  <meta property="og:title" content="A dive into comics data" />
+  <meta name="twitter:title" content="A dive into comics data" />
+  <meta name="description" content="Comic books have been a super important part of my life for the past decade. Comics have figured differently in my life over time, but they’ve maintained a lasting influence over my pop culture choices.
+In that spirit, my first post will focus on how comic book characters have changed throughout history. In particular, I will focus on how gender and sexuality representation has changed over time. For this analysis, I am using a comics database from 538’s Github page.">
+  <meta property="og:description" content="Comic books have been a super important part of my life for the past decade. Comics have figured differently in my life over time, but they’ve maintained a lasting influence over my pop culture choices.
+In that spirit, my first post will focus on how comic book characters have changed throughout history. In particular, I will focus on how gender and sexuality representation has changed over time. For this analysis, I am using a comics database from 538’s Github page.">
+  <meta name="twitter:description" content="Comic books have been a super important part of my life for the past decade. Comics have figured differently in my life over time, but they’ve maintained a lasting influence over my pop culture …">
   <meta name="author" content="Allie Saizan"/>
   <meta name="twitter:card" content="summary" />
-  <meta property="og:url" content="https://alliesaizan.github.io/page/about/" />
+  <meta property="og:url" content="https://alliesaizan.github.io/post/a-dive-into-comics-data/" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="In That Number" />
 
   <meta name="generator" content="Hugo 0.36.1" />
-  <link rel="canonical" href="https://alliesaizan.github.io/page/about/" />
+  <link rel="canonical" href="https://alliesaizan.github.io/post/a-dive-into-comics-data/" />
   <link rel="alternate" href="https://alliesaizan.github.io/index.xml" type="application/rss+xml" title="In That Number">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
@@ -165,9 +162,16 @@ My name is Allie, and I am a researcher at a think tank in DC. I grew up in New 
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <div class="page-heading">
-              <h1>About me</h1>
+            <div class="post-heading">
+              <h1>A dive into comics data</h1>
                 
+                
+                  <span class="post-meta">
+  Posted on February 20, 2018
+  
+</span>
+
+
                 
             </div>
           </div>
@@ -182,17 +186,27 @@ My name is Allie, and I am a researcher at a think tank in DC. I grew up in New 
   <div class="row">
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
       <article role="main" class="blog-post">
-        <p>Background</p>
-
-<p>My name is Allie, and I am a researcher at a think tank in DC. I grew up in New Orleans, hung out in Texas for a minute, and ended up in our nation&rsquo;s capital. I do miss the deep South, and all the good food/vibes that you just can&rsquo;t get anywhere else.</p>
-
-<p>I have a background in economics. I was enamored by the way that economics imposed order around seemingly inexplicable human behavior. In particular, I was drawn to the subfield of public policy analysis because it provided a structured, quantifiable way to ameliorate social ills. But the field is slow-moving, and I believe the emphasis on overly technical tools turns potential stakeholders away. What moves people into action is the connection of data to human stories. This blog is an attempt to elucidate that relationship.</p>
-
-<p>I love Python and R. I also love cats, tacos, and tacocats.</p>
+        <p>Comic books have been a super important part of my life for the past decade. Comics have figured differently in my life over time, but they’ve maintained a lasting influence over my pop culture choices.</p>
+<p>In that spirit, my first post will focus on how comic book characters have changed throughout history. In particular, I will focus on how gender and sexuality representation has changed over time. For this analysis, I am using a comics database from 538’s Github page. 23,272 comic book characters appear in this database. The database covers years 1939-2015.</p>
+<p>There are no duplicate characters, and for the most part, characters are identified by their “legal” names, not by their superhero aliases. The most popular characters, such as my good friend Spidey, are listed with both names.</p>
+<p><img src="/post/2018-02-20-a-dive-into-comics-data_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>DC and Marvel both have steadily increased the number of new characters introduced each year. However, over the past 70 years, DC has published more new characters each year than Marvel. This discrepancy is likely caused by a 1986 reboot which released new instantiations of many DC characters, and introduced new ones. The historgram below reflects this spike.</p>
+<p>DC has released an especially high number of characters coinciding with the “New 52” series, indicated by the largest post-2000 spike. After years of falling sales DC chose to follow the Marvel model and reboot its major characters. Such a massive reboot generally follows an all-encompassing galactic soap opera,which retcons the entire universe of character storylines. Has this move been productive?</p>
+<p>It remains unclear whether releasing more characters each year corresponds to higher diversity among characters. Is Marvel at a disadvantage because it releases less new chaacters each year? Or is it focusing on quality over quantity?</p>
+<p>As comic book characters have become increasingly popular, the question of gender representation becomes increasingly relevant.</p>
+<p><img src="/post/2018-02-20-a-dive-into-comics-data_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Until 1960, DC consistently released more new female characters than Marvel. Possible explanations for that lead include title and secondary characters in the Wonder Woman series, which first appeared in the 1930s. However, the data show that post-1960, Marvel maintained a consistent edge over DC in releasing more female characters. This lead is reversed post-2000, which again, might correspond to the release of the New 52 and accompanying new characters.</p>
+<p>At the highest levels, women represent 30% of Marvel’s new roster. A worrying post-2000 dip indicates that female characters have been introduced less frequently in recent years.</p>
+<p>Similar questions arise about LGBT representation over time.</p>
+<p><img src="/post/2018-02-20-a-dive-into-comics-data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 
       </article>
 
       <ul class="pager blog-pager">
+        
+          <li class="previous">
+            <a href="https://alliesaizan.github.io/post/2017-07-25-my-first-post/" data-toggle="tooltip" data-placement="top" title="My first post">&larr; Previous Post</a>
+          </li>
         
         
       </ul>
