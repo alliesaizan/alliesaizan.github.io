@@ -1,10 +1,10 @@
 ---
-title: A dive into comics data
-author: A Saizan
+title: "A dive into comics data"
+author: "A Saizan"
 date: '2018-02-20'
 slug: a-dive-into-comics-data
-categories: []
 tags: []
+categories: []
 ---
 
 
