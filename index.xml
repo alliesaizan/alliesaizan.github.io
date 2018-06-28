@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>In That Number</title>
-    <link>https://alliesaizan.github.io/</link>
-    <description>Recent content on In That Number</description>
+    <title>Posts on In That Number</title>
+    <link>https://alliesaizan.github.io/post/</link>
+    <description>Recent content in Posts on In That Number</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Tue, 20 Feb 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://alliesaizan.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://alliesaizan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -27,17 +27,6 @@ In that spirit, my first post will focus on how comic book characters have chang
       
       <guid>https://alliesaizan.github.io/post/2017-07-25-my-first-post/</guid>
       <description>I&amp;rsquo;ve been interested in the field of data journalism for a while now. This blog is an attempt to figure out what intersection of data tinkering and visualization works best for my skillset.</description>
-    </item>
-    
-    <item>
-      <title>About me</title>
-      <link>https://alliesaizan.github.io/page/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://alliesaizan.github.io/page/about/</guid>
-      <description>Background
-My name is Allie, and I am a researcher at a think tank in DC. I grew up in New Orleans, hung out in Texas for a minute, and ended up in our nation&amp;rsquo;s capital. I do miss the deep South, and all the good food/vibes that you just can&amp;rsquo;t get anywhere else.
-I have a background in economics. I was enamored by the way that economics imposed order around seemingly inexplicable human behavior.</description>
     </item>
     
   </channel>
