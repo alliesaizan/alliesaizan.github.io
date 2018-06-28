@@ -1,0 +1,77 @@
+baseurl = "https://alliesaizan.github.io"
+DefaultContentLanguage = "en"
+#DefaultContentLanguage = "ja"
+title = "In That Number"
+theme = "beautifulhugo"
+metaDataFormat = "yaml"
+pygmentsUseClasses = true
+pygmentCodeFences = true
+#disqusShortname = "XXX"
+#googleAnalytics = "XXX"
+
+[Params]
+  subtitle = "Exploring data one story at a time"
+  #logo = ""
+  favicon = ""
+  dateFormat = "January 2, 2006"
+  commit = false
+  rss = true
+  comments = false
+#  gcse = "012345678901234567890:abcdefghijk" # Get your code from google.com/cse. Make sure to go to "Look and Feel" and change Layout to "Full Width" and Theme to "Classic"
+
+#[[Params.bigimg]]
+#  src = "img/triangle.jpg"
+#  desc = "Triangle"
+#[[Params.bigimg]]
+#  src = "img/sphere.jpg"
+#  desc = "Sphere"
+#[[Params.bigimg]]
+#  src = "img/hexagon.jpg"
+#  desc = "Hexagon"
+
+[Author]
+  name = "Allie Saizan"
+  github = "https://github.com/alliesaizan"
+  linkedin = "https://www.linkedin.com/in/alexandra-saizan-1ba20a65/"
+
+
+[[menu.main]]
+    name = "Blog"
+    url = "page/blog/"
+    weight = 1
+
+[[menu.main]]
+    name = "About"
+    url = "page/about/"
+    weight = 3
+
+
+[[menu.main]]
+    parent = "Blog"
+    name = "My first post"
+    url = "post/2017-07-25-my-first-post"
+    weight = 1
+
+[[menu.main]]
+    parent = "Blog"
+    name = "A first dive into comics data"
+    url = "post/2018-02-19-comic-characters"
+    weight = 2
+
+[[menu.main]]
+    parent = "Blog"
+    name = "Test"
+    url = "post/2018-02-20-test-post"
+    weight = 2
+
+#[[menu.main]]
+#    parent = "samples"
+#    name = "Code Sample"
+#    url = "post/2016-03-08-code-sample"
+#    weight = 3
+
+[[menu.main]]
+    name = "Tags"
+    url = "tags"
+    weight = 3
+
