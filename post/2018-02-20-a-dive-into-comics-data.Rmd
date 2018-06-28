@@ -8,11 +8,11 @@ tags: []
 ---
 
 
-Comic books have been a super important part of my life for the past decade. Comics have figured differently in my life over time, but they've maintained a lasting influence over my pop culture choices. 
+Comic books have been an important part of my life for the past decade. They have figured differently in my life over time, but nonetheless have maintained a lasting influence over my pop culture choices. 
 
 In that spirit, my first post will focus on how comic book characters have changed throughout history. In particular, I will focus on how gender and sexuality representation has changed over time. For this analysis, I am using a comics database from 538's Github page. 23,272 comic book characters appear in this database. The database covers years 1939-2015. 
 
-There are no duplicate characters, and for the most part, characters are identified by  their "legal" names, not by their superhero aliases. The most popular characters, such as my good friend Spidey, are listed with both names.
+There are no duplicate characters, and for the most part, characters are identified by  their "legal" names, not by their superhero aliases. As the list of the first 25 characters below shows, the most popular characters (such as Spider-Man) are listed with both their fake and legal names.
 
 
 ```{r, include=FALSE, echo=FALSE}
@@ -23,6 +23,22 @@ comic_characters <- read.csv("/Users/alliesaizan/Documents/R Tinkering/Comic boo
 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
+unique(comic_characters$name)[0:25]
+
+```
+
+What kind of features are represented in the data?
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+glimpse(comic_characters)
+
+```
+
+
+DC and Marvel both have steadily increased the number of new characters introduced each year. However, over the past 70 years, DC has published more new characters each year than Marvel. This discrepancy is likely caused by a 1986 reboot which released new instantiations of many DC characters. The historgram below reflects this spike. 
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 group.colors <- c(Marvel = "red4", DC= "royalblue4")
 ggplot(data=comic_characters, aes(x = year, fill=publisher)) + geom_histogram(binwidth=1) +
   scale_fill_manual(values=group.colors) + ggtitle("Comic book characters introduced each year") + theme_classic()
@@ -30,11 +46,7 @@ ggplot(data=comic_characters, aes(x = year, fill=publisher)) + geom_histogram(bi
 ```
 
 
-DC and Marvel both have steadily increased the number of new characters introduced each year. However, over the past 70 years, DC has published more new characters each year than Marvel. This discrepancy is likely caused by a 1986 reboot which released new instantiations of many DC characters, and introduced new ones. The historgram below reflects this spike. 
-
-DC has released an especially high number of characters coinciding with the "New 52" series, indicated by the largest post-2000 spike. After years of falling sales DC chose to follow the Marvel model and reboot its major characters. Such a massive reboot generally follows an all-encompassing galactic soap opera,which retcons the entire universe of character storylines. Has this move been productive?
-
-It remains unclear whether releasing more characters each year corresponds to higher diversity among characters. Is Marvel at a disadvantage because it releases less new chaacters each year? Or is it focusing on quality over quantity? 
+DC has released an especially high number of characters coinciding with the "New 52" series, indicated by the largest post-2000 spike. After years of falling sales DC chose to follow the Marvel model and reboot its major characters. Such a massive reboot generally follows an all-encompassing galactic soap opera, which retcons the entire universe of character storylines. Is the practice of retconning correlated with a more diverse array of characters?
 
 As comic book characters have become increasingly popular, the question of gender representation becomes increasingly relevant. 
 
@@ -45,18 +57,18 @@ gender <- aggregate(comic_characters$female, by=list(comic_characters$year, comi
 gender <- rename(gender, year=Group.1, publisher=Group.2, pct_fem=x)
 
 ggplot(data=gender, aes(y=pct_fem, x = year, colour=publisher)) + 
-  geom_smooth(se=FALSE) + scale_color_manual(values = c("red4", "royalblue4")) +
+  geom_line(se=FALSE) + scale_color_manual(values = c("royalblue4", "red4")) +
   labs(title = "Percent of new female characters \nintroduced each year", x = "Year", y = 'Percent women') +
   theme(plot.title = element_text(hjust = 0.5, face="bold")) + theme_classic()
 
 ```
 
 
-Until 1960, DC consistently released more new female characters than Marvel. Possible explanations for that lead include title and secondary characters in the Wonder Woman series, which first appeared in the 1930s. However, the data show that post-1960, Marvel maintained a consistent edge over DC in releasing more female characters. This lead is reversed post-2000, which again, might correspond to the release of the New 52 and accompanying new characters. 
+The most promising trend these data show is that both publishers show increasing percentages of female characters over time. Until 1960, DC consistently released more new female characters than Marvel. The data show that post-1960, Marvel maintained a consistent edge over DC in releasing more female characters. This lead is reversed post-2000, which again, might correspond to the release of the New 52 and accompanying new characters. 
 
 At the highest levels, women represent 30% of Marvel's new roster. A worrying post-2000 dip indicates that female characters have been introduced less frequently in recent years.
 
-Similar questions arise about LGBT representation over time.
+Similar questions arise about LGBT representation over time. The percentage of new LGBT characters introduced each year has remained consistently low over time. DC shows the largest spikes in percent introduced each year, but these spikes likely correspond to characters who were retroactively categorized as LGBT. Marvel appears to be leading the way since 2000 in introducing LGBT characters.
 
 ```{r, echo=FALSE, warning=FALSE, message = FALSE}
 comic_characters$lgbt <- as.numeric(is.na(comic_characters$gsm) == FALSE)
@@ -64,10 +76,14 @@ lgbt <- aggregate(comic_characters$lgbt, by=list(comic_characters$year, comic_ch
 lgbt <-  rename(lgbt, year=Group.1, publisher=Group.2, pct_lgbt=x)
 
 ggplot(data=lgbt, aes(y=pct_lgbt, x = year, colour=publisher)) + 
-  geom_smooth(se = FALSE) + scale_color_manual(values = c("red4", "royalblue4")) +
+  geom_line(se = FALSE) + scale_color_manual(values = c("royalblue4","red4")) +
   labs(title = "Percent of new LGBT characters \nintroduced each year", x = "Year", y = 'Percent LGBT') +
   theme(plot.title = element_text(hjust = 0.5, face="bold")) + theme_classic()
 
-#scale_colour_brewer(palette= "Set1", direction=-1)
 
 ```
+
+
+This post represents a cursory look at comics data. I have a number of questions to address in subsequent analyses. Analyzing whether these characteristics are predictive of some metric of interest, say whether a character is still alive or how she/he aligns, would likely be informative.
+
+It remains unclear whether releasing more characters each year corresponds to higher diversity among characters. Is Marvel at a disadvantage because it releases less new chaacters each year? Or is it focusing on quality over quantity? Both publishers appear to be making an effort to increase diversity, but the data show that they have a long way to go to reach truly equitable representation.
