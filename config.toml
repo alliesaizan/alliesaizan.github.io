@@ -57,18 +57,12 @@ pygmentCodeFences = true
     name = "A first dive into comics data"
     url = "post/2018-02-19-comic-characters"
     weight = 2
-
+    
 [[menu.main]]
     parent = "Blog"
-    name = "Test"
-    url = "post/2018-02-20-test-post"
-    weight = 2
-
-#[[menu.main]]
-#    parent = "samples"
-#    name = "Code Sample"
-#    url = "post/2016-03-08-code-sample"
-#    weight = 3
+    name = "Teardrops on my Data Frames"
+    url = "post/2018-07-25-taylor-swift-song-lyrics"
+    weight = 3
 
 [[menu.main]]
     name = "Tags"

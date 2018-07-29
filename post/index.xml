@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on In That Number</title>
-    <link>https://alliesaizan.github.io/post/</link>
+    <link>/post/</link>
     <description>Recent content in Posts on In That Number</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Wed, 25 Jul 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://alliesaizan.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Teardrops on my Data Frames</title>
-      <link>https://alliesaizan.github.io/post/taylor-swift-song-lyrics/</link>
+      <link>/post/taylor-swift-song-lyrics/</link>
       <pubDate>Wed, 25 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://alliesaizan.github.io/post/taylor-swift-song-lyrics/</guid>
+      <guid>/post/taylor-swift-song-lyrics/</guid>
       <description>A text analysis of Taylor Swift’s discography I was browsing Kaggle for an interesting dataset when I ran across a library of Taylor Swift’s songs.
 Usually when I find data on Kaggle, it’s been picked over and analyzed all sort of ways.</description>
     </item>
     
     <item>
       <title>A dive into comics data</title>
-      <link>https://alliesaizan.github.io/post/a-dive-into-comics-data/</link>
+      <link>/post/a-dive-into-comics-data/</link>
       <pubDate>Tue, 20 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://alliesaizan.github.io/post/a-dive-into-comics-data/</guid>
+      <guid>/post/a-dive-into-comics-data/</guid>
       <description>Comic books have been an important part of my life for the past decade. They have figured differently in my life over time, but nonetheless have maintained a lasting influence over my pop culture choices.
 In that spirit, my first post will focus on how comic book characters have changed throughout history. In particular, I will focus on how gender and sexuality representation has changed over time. For this analysis, I am using a comics database from 538’s Github page.</description>
     </item>
     
     <item>
       <title>My first post</title>
-      <link>https://alliesaizan.github.io/post/2017-07-25-my-first-post/</link>
+      <link>/post/2017-07-25-my-first-post/</link>
       <pubDate>Tue, 25 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://alliesaizan.github.io/post/2017-07-25-my-first-post/</guid>
+      <guid>/post/2017-07-25-my-first-post/</guid>
       <description>I&amp;rsquo;ve been interested in the field of data journalism for a while now. This blog is an attempt to figure out what intersection of data tinkering and visualization works best for my skillset.</description>
     </item>
     
