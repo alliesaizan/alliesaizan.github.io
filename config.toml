@@ -19,15 +19,6 @@ pygmentCodeFences = true
   comments = false
 #  gcse = "012345678901234567890:abcdefghijk" # Get your code from google.com/cse. Make sure to go to "Look and Feel" and change Layout to "Full Width" and Theme to "Classic"
 
-#[[Params.bigimg]]
-#  src = "img/triangle.jpg"
-#  desc = "Triangle"
-#[[Params.bigimg]]
-#  src = "img/sphere.jpg"
-#  desc = "Sphere"
-#[[Params.bigimg]]
-#  src = "img/hexagon.jpg"
-#  desc = "Hexagon"
 
 [Author]
   name = "Allie Saizan"
@@ -55,7 +46,7 @@ pygmentCodeFences = true
 [[menu.main]]
     parent = "Blog"
     name = "A first dive into comics data"
-    url = "post/2018-02-19-comic-characters"
+    url = "post/2018-02-20-a-dive-into-comics-data"
     weight = 2
     
 [[menu.main]]
