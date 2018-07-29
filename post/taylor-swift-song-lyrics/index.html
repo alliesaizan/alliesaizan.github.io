@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Teardrops on my Data Frames</title>
+  <meta property="og:title" content="Teardrops on my Data Frames" />
+  <meta name="twitter:title" content="Teardrops on my Data Frames" />
+  <meta name="description" content="A text analysis of Taylor Swift’s discography I was browsing Kaggle for an interesting dataset when I ran across a library of Taylor Swift’s songs.
+Usually when I find data on Kaggle, it’s been picked over and analyzed all sort of ways.">
+  <meta property="og:description" content="A text analysis of Taylor Swift’s discography I was browsing Kaggle for an interesting dataset when I ran across a library of Taylor Swift’s songs.
+Usually when I find data on Kaggle, it’s been picked over and analyzed all sort of ways.">
+  <meta name="twitter:description" content="A text analysis of Taylor Swift’s discography I was browsing Kaggle for an interesting dataset when I ran across a library of Taylor Swift’s songs.
+Usually when I find data on Kaggle, it’s been picked …">
+  <meta name="author" content="Allie Saizan"/>
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://alliesaizan.github.io/post/taylor-swift-song-lyrics/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="In That Number" />
+
+  <meta name="generator" content="Hugo 0.36.1" />
+  <link rel="canonical" href="https://alliesaizan.github.io/post/taylor-swift-song-lyrics/" />
+  <link rel="alternate" href="https://alliesaizan.github.io/index.xml" type="application/rss+xml" title="In That Number">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://alliesaizan.github.io/css/main.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://alliesaizan.github.io/css/pygment_highlights.css" />
+  <link rel="stylesheet" href="https://alliesaizan.github.io/css/highlight.min.css" />
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.css" integrity="sha256-sCl5PUOGMLfFYctzDW3MtRib0ctyUvI9Qsmq2wXOeBY=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/default-skin/default-skin.min.css" integrity="sha256-BFeI1V+Vh1Rk37wswuOYn5lsTcaU96hGaI7OUVCLjPc=" crossorigin="anonymous" />
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://alliesaizan.github.io">In That Number</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li class="navlinks-container">
+              <a class="navlinks-parent" href="javascript:void(0)">Blog</a>
+              <div class="navlinks-children">
+                
+                  <a href="/post/2017-07-25-my-first-post">My first post</a>
+                
+                  <a href="/post/2018-02-20-a-dive-into-comics-data">A dive into comics data</a>
+                
+                  <a href="/post/2018-07-25-taylor-swift-song-lyrics">Teardrops on my Data Frames</a>
+                
+              </div>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Teardrops on my Data Frames</h1>
+                
+                
+                  <span class="post-meta">
+  Posted on July 25, 2018
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<script src="/rmarkdown-libs/proj4js/proj4.js"></script>
+<link href="/rmarkdown-libs/highcharts/css/motion.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/highcharts/highstock.js"></script>
+<script src="/rmarkdown-libs/highcharts/highcharts-3d.js"></script>
+<script src="/rmarkdown-libs/highcharts/highcharts-more.js"></script>
+<script src="/rmarkdown-libs/highcharts/modules/annotations.js"></script>
+<script src="/rmarkdown-libs/highcharts/modules/broken-axis.js"></script>
+<script src="/rmarkdown-libs/highcharts/modules/data.js"></script>
+<script src="/rmarkdown-libs/highcharts/modules/drilldown.js"></script>
+<script src="/rmarkdown-libs/highcharts/modules/exporting.js"></script>
+<script src="/rmarkdown-libs/highcharts/modules/funnel.js"></script>
+<script src="/rmarkdown-libs/highcharts/modules/heatmap.js"></script>
+<script src="/rmarkdown-libs/highcharts/modules/map.js"></script>
+<script src="/rmarkdown-libs/highcharts/modules/no-data-to-display.js"></script>
+<script src="/rmarkdown-libs/highcharts/modules/offline-exporting.js"></script>
+<script src="/rmarkdown-libs/highcharts/modules/solid-gauge.js"></script>
+<script src="/rmarkdown-libs/highcharts/modules/treemap.js"></script>
+<script src="/rmarkdown-libs/highcharts/plugins/annotations.js"></script>
+<script src="/rmarkdown-libs/highcharts/plugins/draggable-legend.js"></script>
+<script src="/rmarkdown-libs/highcharts/plugins/draggable-points.js"></script>
+<script src="/rmarkdown-libs/highcharts/plugins/export-csv.js"></script>
+<script src="/rmarkdown-libs/highcharts/plugins/grouped-categories.js"></script>
+<script src="/rmarkdown-libs/highcharts/plugins/motion.js"></script>
+<script src="/rmarkdown-libs/highcharts/plugins/pattern-fill-v2.js"></script>
+<script src="/rmarkdown-libs/highcharts/plugins/tooltip-delay.js"></script>
+<script src="/rmarkdown-libs/highcharts/custom/reset.js"></script>
+<script src="/rmarkdown-libs/highcharts/custom/symbols-extra.js"></script>
+<script src="/rmarkdown-libs/highcharts/custom/text-symbols.js"></script>
+<link href="/rmarkdown-libs/fontawesome/font-awesome.min.css" rel="stylesheet" />
+<link href="/rmarkdown-libs/htmlwdgtgrid/htmlwdgtgrid.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/highchart-binding/highchart.js"></script>
+
+
+<div id="a-text-analysis-of-taylor-swifts-discography" class="section level3">
+<h3>A text analysis of Taylor Swift’s discography</h3>
+<p><img src="/Users/alliesaizan/Documents/R%20Tinkering/TSwift%20Lyrics/Taylor_Swift_Cavendish.jpeg" width="200px" /></p>
+<p>I was browsing Kaggle for an interesting dataset when I ran across a <a href="https://www.kaggle.com/PromptCloudHQ/taylor-swift-song-lyrics-from-all-the-albums">library of Taylor Swift’s songs</a>.</p>
+<p>Usually when I find data on Kaggle, it’s been picked over and analyzed all sort of ways. But luckily for me, only one person had analyzed these data! I guess data scientists aren’t much into pop culture (or data not associated with million-dollar competitions).</p>
+<p>I thought it might be cool to look for patterns in Taylor’s music. My running theory for the past decade is that Taylor’s songs all sound the same. Would the data bear that pattern out?</p>
+<p>Speficially, this analysis seeks to answer the following questions:</p>
+<ol style="list-style-type: decimal">
+<li>Did the length of Taylor’s songs change over time?</li>
+<li>Did the complexity of songs change over time?</li>
+<li>Do Taylor’s songs tend to coalesce around a few topics? If so, how might we charcterize those topics?</li>
+<li>Does a trend exist between song topic and song year released?</li>
+</ol>
+<p>Before we dive into the analysis, let’s run a few quality checks on the data.</p>
+<ol style="list-style-type: decimal">
+<li>How many records do we have here?</li>
+</ol>
+<pre><code>## [1] 7</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Is Taylor Swift the only artist represented in the data?</li>
+</ol>
+<pre><code>## [1] Taylor Swift
+## Levels: Taylor Swift</code></pre>
+<p>Oh good, yes she is.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Which songs are in the data?</li>
+</ol>
+<pre><code>##  [1] Tim McGraw                                   
+##  [2] Picture To Burn                              
+##  [3] Teardrops On My Guitar                       
+##  [4] A Place In This World                        
+##  [5] Cold as You                                  
+##  [6] The Outside                                  
+##  [7] Tied Together With A Smile                   
+##  [8] Stay Beautiful                               
+##  [9] Should&#39;ve Said No                            
+## [10] Mary&#39;s Song (Oh My My My)                    
+## [11] Our Song                                     
+## [12] I&#39;m Only Me When I&#39;m With You                
+## [13] Invisible                                    
+## [14] A Perfectly Good Heart                       
+## [15] Fearless                                     
+## [16] Fifteen                                      
+## [17] Love Story                                   
+## [18] Hey Stephen                                  
+## [19] White Horse                                  
+## [20] You Belong With Me                           
+## [21] Breathe (Ft.\xa0Colbie\xa0Caillat)           
+## [22] Tell Me Why                                  
+## [23] You&#39;re Not Sorry                             
+## [24] The Way I Loved You                          
+## [25] Forever &amp; Always                             
+## [26] The Best Day                                 
+## [27] Change                                       
+## [28] Mine                                         
+## [29] Sparks Fly                                   
+## [30] Back To December                             
+## [31] Speak Now                                    
+## [32] Dear John                                    
+## [33] Mean                                         
+## [34] The Story of Us                              
+## [35] Never Grow Up                                
+## [36] Enchanted                                    
+## [37] Better Than Revenge                          
+## [38] Innocent                                     
+## [39] Haunted                                      
+## [40] Last Kiss                                    
+## [41] Long Live                                    
+## [42] Ours                                         
+## [43] If This Was a Movie                          
+## [44] Superman                                     
+## [45] State of Grace                               
+## [46] Red                                          
+## [47] Treacherous                                  
+## [48] I Knew You Were Trouble                      
+## [49] All Too Well                                 
+## [50] 22                                           
+## [51] I Almost Do                                  
+## [52] We Are Never Ever Getting Back Together      
+## [53] Stay Stay Stay                               
+## [54] The Last Time (Ft.\xa0Gary\xa0Lightbody)     
+## [55] Holy Ground                                  
+## [56] Sad Beautiful Tragic                         
+## [57] The Lucky One                                
+## [58] Everything Has Changed (Ft.\xa0Ed\xa0Sheeran)
+## [59] Starlight                                    
+## [60] Begin Again                                  
+## [61] The Moment I Knew                            
+## [62] Come Back... Be Here                         
+## [63] Girl at Home                                 
+## [64] Welcome to New York                          
+## [65] Blank Space                                  
+## [66] Style                                        
+## [67] Out of the Woods                             
+## [68] All You Had to Do Was Stay                   
+## [69] Shake It Off                                 
+## [70] I Wish You Would                             
+## [71] Bad Blood                                    
+## [72] Wildest Dreams                               
+## [73] How You Get The Girl                         
+## [74] This Love                                    
+## [75] I Know Places                                
+## [76] Clean                                        
+## [77] Wonderland                                   
+## [78] You Are in Love                              
+## [79] New Romantics                                
+## [80] ...Ready for It?                             
+## [81] End Game (Ft.\xa0Ed\xa0Sheeran &amp; Future)     
+## [82] I Did Something Bad                          
+## [83] Don&#39;t Blame Me                               
+## [84] Delicate                                     
+## [85] Look What You Made Me Do                     
+## [86] So It Goes...                                
+## [87] Gorgeous                                     
+## [88] Getaway Car                                  
+## [89] King of My Heart                             
+## [90] Dancing With Our Hands Tied                  
+## [91] Dress                                        
+## [92] This Is Why We Can&#39;t Have Nice Things        
+## [93] Call It What You Want                        
+## [94] New Year&#39;s Day                               
+## 94 Levels: ...Ready for It? 22 ... You&#39;re Not Sorry</code></pre>
+<p>The data needs pre-processing, which includes removing stopwords and special characters and coercing every word to lowercase. Removing stopwords is a typical natural language processing task, but it gives me some anxiety because some of Taylor’s most prominent songs (such as “You Belong With Me”) contain stopwords (“You”, “With”, “Me”).</p>
+<p>In the original dataset, every row contains one song lyric, which is not ideal from a data tidyness point of view. The steps are hidden from view, but I end up with a reshaped dataset.</p>
+</div>
+<div id="question-1-visualizing-song-length-over-time" class="section level2">
+<h2>Question 1: Visualizing song length over time</h2>
+<p>I’m interpreting song length as the number of unique tokens in a song. Below, I plot the trend of average song length over the years.</p>
+<div id="htmlwidget-1" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"hc_opts":{"title":{"text":"Average Song Word Count by Year"},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"xAxis":{"categories":[2006,2008,2010,2012,2014,2017]},"series":[{"data":[70.7142857142857,82.6923076923077,103,90.0526315789474,119.9375,132.133333333333],"name":"Word Count","color":"#815BFF"}]},"theme":{"colors":["#f1c40f","#2ecc71","#9b59b6","#e74c3c","#34495e","#3498db","#1abc9c","#f39c12","#d35400"],"chart":{"backgroundColor":"#ECF0F1"},"xAxis":{"gridLineDashStyle":"Dash","gridLineWidth":1,"gridLineColor":"#BDC3C7","lineColor":"#BDC3C7","minorGridLineColor":"#BDC3C7","tickColor":"#BDC3C7","tickWidth":1},"yAxis":{"gridLineDashStyle":"Dash","gridLineColor":"#BDC3C7","lineColor":"#BDC3C7","minorGridLineColor":"#BDC3C7","tickColor":"#BDC3C7","tickWidth":1},"legendBackgroundColor":"rgba(0, 0, 0, 0.5)","background2":"#505053","dataLabelsColor":"#B0B0B3","textColor":"#34495e","contrastTextColor":"#F0F0F3","maskColor":"rgba(255,255,255,0.3)"},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>The graph above shows that the average word count in Taylor’s songs have increased rather steadily over the years.</p>
+<p>This chart does not account for within-year variation. It’s entirely possible that a few songs had high word count in the later years of Taylor’s career, which brought the average up. Let’s look at that within-year variation.</p>
+<div id="htmlwidget-2" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"hc_opts":{"title":{"text":"Distribution of Song Word Count by Year"},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0,"marker":{"symbol":"circle"},"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"chart":{"type":"column"},"xAxis":{"type":"category","categories":""},"series":[{"name":null,"data":[{"name":2006,"low":21,"q1":57,"median":66.5,"q3":84,"high":120},{"name":2008,"low":55,"q1":74,"median":83,"q3":92,"high":119},{"name":2010,"low":83,"q1":100,"median":107,"q3":114,"high":123},{"name":2012,"low":54,"q1":73,"median":90,"q3":108,"high":126},{"name":2014,"low":78,"q1":88.5,"median":99,"q3":138.5,"high":186},{"name":2017,"low":86,"q1":91,"median":119,"q3":161.5,"high":237}],"type":"boxplot","id":null,"color":"#815BFF"}]},"theme":{"colors":["#f1c40f","#2ecc71","#9b59b6","#e74c3c","#34495e","#3498db","#1abc9c","#f39c12","#d35400"],"chart":{"backgroundColor":"#ECF0F1"},"xAxis":{"gridLineDashStyle":"Dash","gridLineWidth":1,"gridLineColor":"#BDC3C7","lineColor":"#BDC3C7","minorGridLineColor":"#BDC3C7","tickColor":"#BDC3C7","tickWidth":1},"yAxis":{"gridLineDashStyle":"Dash","gridLineColor":"#BDC3C7","lineColor":"#BDC3C7","minorGridLineColor":"#BDC3C7","tickColor":"#BDC3C7","tickWidth":1},"legendBackgroundColor":"rgba(0, 0, 0, 0.5)","background2":"#505053","dataLabelsColor":"#B0B0B3","textColor":"#34495e","contrastTextColor":"#F0F0F3","maskColor":"rgba(255,255,255,0.3)"},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>The distribution of word counts by song becomes more spread out over the years. Interestingly, small word-count songs get larger as time goes on as well, which suggests that the widening distributions are driven by greater wordiness and not a greater spread over word count length. Taylor released her wordiest songs in 2017. Is this trend a sign that Taylor’s songs are getting more intricate or complex over time?</p>
+</div>
+<div id="question-2-visualizing-song-complexity-over-time" class="section level2">
+<h2>Question 2: Visualizing song complexity over time</h2>
+<p>I define “song conplexity” as the number of unique non-stopword words per song. I look at song complexity from two differnet angles:</p>
+<ol style="list-style-type: decimal">
+<li>On average, how many unique words appear per song per year?</li>
+<li>On average, how many times is a word repeated per song?</li>
+</ol>
+<div id="htmlwidget-3" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3">{"x":{"hc_opts":{"title":{"text":"Unique Words in Songs by Year"},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"xAxis":{"categories":[2006,2008,2010,2012,2014,2017]},"series":[{"data":[37.1428571428571,50.9230769230769,60.8823529411765,47.4210526315789,48.5625,57.5333333333333],"name":"Average Number of Unique Words","color":"#815BFF"}]},"theme":{"colors":["#f1c40f","#2ecc71","#9b59b6","#e74c3c","#34495e","#3498db","#1abc9c","#f39c12","#d35400"],"chart":{"backgroundColor":"#ECF0F1"},"xAxis":{"gridLineDashStyle":"Dash","gridLineWidth":1,"gridLineColor":"#BDC3C7","lineColor":"#BDC3C7","minorGridLineColor":"#BDC3C7","tickColor":"#BDC3C7","tickWidth":1},"yAxis":{"gridLineDashStyle":"Dash","gridLineColor":"#BDC3C7","lineColor":"#BDC3C7","minorGridLineColor":"#BDC3C7","tickColor":"#BDC3C7","tickWidth":1},"legendBackgroundColor":"rgba(0, 0, 0, 0.5)","background2":"#505053","dataLabelsColor":"#B0B0B3","textColor":"#34495e","contrastTextColor":"#F0F0F3","maskColor":"rgba(255,255,255,0.3)"},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>The chart above shows that Taylor reached her greatest lexical complecity in 2010. 2010 roughly marks Taylor’s transition from a country music artist to a pop artist. The most notable trend is that as Taylor’s songs skewed more heavily toward the pop music genre, the number of unique words in songs decreased. But again, looking at averages doesn’t get us very far, so let’s take a gander at boxplots.</p>
+<div id="htmlwidget-4" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4">{"x":{"hc_opts":{"title":{"text":"Distribution of Unique Words by Year"},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0,"marker":{"symbol":"circle"},"showInLegend":false},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"chart":{"type":"column"},"xAxis":{"type":"category","categories":""},"series":[{"name":null,"data":[{"name":2006,"low":14,"q1":26,"median":37.5,"q3":44,"high":63},{"name":2008,"low":34,"q1":42,"median":49,"q3":58,"high":67},{"name":2010,"low":45,"q1":56,"median":60,"q3":68,"high":85},{"name":2012,"low":29,"q1":40.5,"median":44,"q3":53,"high":57},{"name":2014,"low":26,"q1":42,"median":47.5,"q3":54,"high":62},{"name":2017,"low":43,"q1":48,"median":51,"q3":60.5,"high":76}],"type":"boxplot","id":null,"color":"#815BFF"}]},"theme":{"colors":["#f1c40f","#2ecc71","#9b59b6","#e74c3c","#34495e","#3498db","#1abc9c","#f39c12","#d35400"],"chart":{"backgroundColor":"#ECF0F1"},"xAxis":{"gridLineDashStyle":"Dash","gridLineWidth":1,"gridLineColor":"#BDC3C7","lineColor":"#BDC3C7","minorGridLineColor":"#BDC3C7","tickColor":"#BDC3C7","tickWidth":1},"yAxis":{"gridLineDashStyle":"Dash","gridLineColor":"#BDC3C7","lineColor":"#BDC3C7","minorGridLineColor":"#BDC3C7","tickColor":"#BDC3C7","tickWidth":1},"legendBackgroundColor":"rgba(0, 0, 0, 0.5)","background2":"#505053","dataLabelsColor":"#B0B0B3","textColor":"#34495e","contrastTextColor":"#F0F0F3","maskColor":"rgba(255,255,255,0.3)"},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>The distribution of unique words in songs over the years is quite similar, but gets tighter over time.</p>
+<div id="htmlwidget-5" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-5">{"x":{"hc_opts":{"title":{"text":"Average Word Repetition by Year"},"yAxis":{"title":{"text":null}},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"xAxis":{"categories":[2006,2008,2010,2012,2014,2017]},"series":[{"data":[1.94895118269785,1.66106157656639,1.71013164602256,1.99234604197424,2.57458285445842,2.30508502645926],"name":"Average Number of Word Repetitions","color":"#815BFF"}]},"theme":{"colors":["#f1c40f","#2ecc71","#9b59b6","#e74c3c","#34495e","#3498db","#1abc9c","#f39c12","#d35400"],"chart":{"backgroundColor":"#ECF0F1"},"xAxis":{"gridLineDashStyle":"Dash","gridLineWidth":1,"gridLineColor":"#BDC3C7","lineColor":"#BDC3C7","minorGridLineColor":"#BDC3C7","tickColor":"#BDC3C7","tickWidth":1},"yAxis":{"gridLineDashStyle":"Dash","gridLineColor":"#BDC3C7","lineColor":"#BDC3C7","minorGridLineColor":"#BDC3C7","tickColor":"#BDC3C7","tickWidth":1},"legendBackgroundColor":"rgba(0, 0, 0, 0.5)","background2":"#505053","dataLabelsColor":"#B0B0B3","textColor":"#34495e","contrastTextColor":"#F0F0F3","maskColor":"rgba(255,255,255,0.3)"},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>Word repetition increased dramatically after 2010, and was at its highest in 2014. In 2014, Taylor repeated words on average 2.57 times.</p>
+</div>
+<div id="question-3-what-topics-are-typically-covered-in-taylors-songs" class="section level2">
+<h2>Question 3: What topics are typically covered in Taylor’s songs?</h2>
+<p>Does Taylor Swift really sing about the same topics, or am I salty? To find out, I use a method called <a href="https://eight2late.wordpress.com/2015/09/29/a-gentle-introduction-to-topic-modeling-using-r/">Latent Dirichlet Allocation (LDA)</a>. LDA is a generative probabilistic model commonly used to model topics in documents.</p>
+<p>LDA assumes that each document is a mixture of topics, and each topic is a mixture of words. It can be used for many different types of analyses. The probabilistic model generated by LDA assigns probabilities to a word falling under a given topic, and to a topic being assigned to a given document.</p>
+<p>I will treat each song as a “document.” Before we dive into the analysis, let’s look at the most frequent songs in her collection.</p>
+<pre class="r"><code>datV2 %&gt;% 
+  unnest_tokens(word, text) %&gt;%
+  anti_join(stop_words) %&gt;% 
+  count(word, sort = TRUE)</code></pre>
+<pre><code>## # A tibble: 1,957 x 2
+##    word      n
+##    &lt;chr&gt; &lt;int&gt;
+##  1 time    164
+##  2 love    160
+##  3 baby    115
+##  4 ooh     103
+##  5 stay     88
+##  6 wanna    82
+##  7 shake    80
+##  8 yeah     80
+##  9 ey       72
+## 10 night    72
+## # ... with 1,947 more rows</code></pre>
+<p>Unusurpsingly, “love” clocks in at #2. But let’s not throw Taylor under the bus here. Is it really true that all of her songs are about relationships and heartbreaks? Did she really need to reinvent herself in 2017 (and 2014, and 2012… you get the point) to escape that image?</p>
+<p>I used LDA to generate 5 topics, and each topic groups a set of words together. The table below shpws that the topics don’t really have a pattern (but Topic 3 clearly references “Shake it Off”). Topic 2 appears to cover the most romantic ground.</p>
+<p>The last bit of analysis I want to cover is determining whether topics occur more frequently over time. Is Taylor releasing songs that fall under a given topic more frequntly? Might the topics represent an album?</p>
+<div id="htmlwidget-6" style="width:100%;height:500px;" class="highchart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6">{"x":{"hc_opts":{"title":{"text":"Topics Across Years"},"yAxis":{"title":{"text":"count"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"plotOptions":{"series":{"turboThreshold":0,"showInLegend":true,"marker":{"enabled":false}},"treemap":{"layoutAlgorithm":"squarified"},"bubble":{"minSize":5,"maxSize":25},"scatter":{"marker":{"symbol":"circle"}}},"annotationsOptions":{"enabledButtons":false},"tooltip":{"delayForDisplay":10},"series":[{"name":"1","data":[{"year":2006,"V1":"1","count":2,"x":2006,"y":2},{"year":2008,"V1":"1","count":3,"x":2008,"y":3},{"year":2010,"V1":"1","count":6,"x":2010,"y":6},{"year":2012,"V1":"1","count":5,"x":2012,"y":5},{"year":2014,"V1":"1","count":2,"x":2014,"y":2},{"year":2017,"V1":"1","count":2,"x":2017,"y":2}],"type":"line","color":"#815BFF"},{"name":"2","data":[{"year":2006,"V1":"2","count":5,"x":2006,"y":5},{"year":2008,"V1":"2","count":2,"x":2008,"y":2},{"year":2010,"V1":"2","count":2,"x":2010,"y":2},{"year":2012,"V1":"2","count":6,"x":2012,"y":6},{"year":2014,"V1":"2","count":6,"x":2014,"y":6},{"year":2017,"V1":"2","count":1,"x":2017,"y":1}],"type":"line","color":"#957FEF"},{"name":"3","data":[{"year":2008,"V1":"3","count":1,"x":2008,"y":1},{"year":2010,"V1":"3","count":1,"x":2010,"y":1},{"year":2012,"V1":"3","count":1,"x":2012,"y":1},{"year":2014,"V1":"3","count":2,"x":2014,"y":2},{"year":2017,"V1":"3","count":5,"x":2017,"y":5}],"type":"line","color":"#DEC0F1"},{"name":"4","data":[{"year":2006,"V1":"4","count":4,"x":2006,"y":4},{"year":2008,"V1":"4","count":2,"x":2008,"y":2},{"year":2010,"V1":"4","count":5,"x":2010,"y":5},{"year":2012,"V1":"4","count":5,"x":2012,"y":5},{"year":2014,"V1":"4","count":4,"x":2014,"y":4},{"year":2017,"V1":"4","count":2,"x":2017,"y":2}],"type":"line","color":"#EFD9CE"},{"name":"5","data":[{"year":2006,"V1":"5","count":3,"x":2006,"y":3},{"year":2008,"V1":"5","count":5,"x":2008,"y":5},{"year":2010,"V1":"5","count":3,"x":2010,"y":3},{"year":2012,"V1":"5","count":2,"x":2012,"y":2},{"year":2014,"V1":"5","count":2,"x":2014,"y":2},{"year":2017,"V1":"5","count":5,"x":2017,"y":5}],"type":"line","color":"#2F242C"}],"xAxis":{"type":"linear","title":{"text":"year"},"categories":null}},"theme":{"colors":["#f1c40f","#2ecc71","#9b59b6","#e74c3c","#34495e","#3498db","#1abc9c","#f39c12","#d35400"],"chart":{"backgroundColor":"#ECF0F1"},"xAxis":{"gridLineDashStyle":"Dash","gridLineWidth":1,"gridLineColor":"#BDC3C7","lineColor":"#BDC3C7","minorGridLineColor":"#BDC3C7","tickColor":"#BDC3C7","tickWidth":1},"yAxis":{"gridLineDashStyle":"Dash","gridLineColor":"#BDC3C7","lineColor":"#BDC3C7","minorGridLineColor":"#BDC3C7","tickColor":"#BDC3C7","tickWidth":1},"legendBackgroundColor":"rgba(0, 0, 0, 0.5)","background2":"#505053","dataLabelsColor":"#B0B0B3","textColor":"#34495e","contrastTextColor":"#F0F0F3","maskColor":"rgba(255,255,255,0.3)"},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","drillUpText":"Back to {series.name}","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"thousandsSep":" ","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<p>“Year” and “Topic” do not appear to be correlated at all. The data show that topics are spead out relatively evenly across years. Topic 5 seems to be very prominent across songs in 2017. From the words assigned high probability to Topic 5, including “wanna,” “feel,” and “game,” might it be the case that these songs are representative of Taylor’s increasing agency?</p>
+<p>LDA revealed much of what I already knew, in that the topics of Taylor Swift’s songs tend to be associated with love, feelings, dreaming (of the romantic sort), etc. I do feel like now I know a little more about the patterns hidden underneath some of her most popular songs, and maybe a little more about what makes them so catchy.</p>
+</div>
+
+      </article>
+
+      <ul class="pager blog-pager">
+        
+          <li class="previous">
+            <a href="https://alliesaizan.github.io/post/a-dive-into-comics-data/" data-toggle="tooltip" data-placement="top" title="A dive into comics data">&larr; Previous Post</a>
+          </li>
+        
+        
+      </ul>
+
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/https://github.com/alliesaizan" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/https://www.linkedin.com/in/alexandra-saizan/" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            <a href="https://alliesaizan.github.io/index.xml" title="RSS">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          Allie Saizan
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://alliesaizan.github.io">In That Number</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.36.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://alliesaizan.github.io/js/main.js"></script>
+<script src="https://alliesaizan.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe.min.js" integrity="sha256-UplRCs9v4KXVJvVY+p+RSo5Q4ilAUXh7kpjyIP5odyc=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.1/photoswipe-ui-default.min.js" integrity="sha256-PWHOlUzc96pMc8ThwRIXPn8yH4NOLu42RQ0b9SpnpFk=" crossorigin="anonymous"></script>
+<script src="/js/load-photoswipe.js"></script>
+
+
+
+
+  </body>
+</html>
+
