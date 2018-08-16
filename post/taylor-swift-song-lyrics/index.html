@@ -195,20 +195,21 @@
 <img src="Taylor_Swift_Cavendish.jpg" alt="OG Taylor, before she went through her edgy phase" />
 <p class="caption">OG Taylor, before she went through her “edgy” phase</p>
 </div>
-<p>Usually when I find data on Kaggle, it’s been picked over and analyzed all sort of ways. But luckily for me, only one person had analyzed these data! I guess data scientists aren’t much into pop culture (or data not associated with million-dollar competitions).</p>
-<p>I thought it might be cool to look for patterns in Taylor’s music. My running theory for the past decade is that Taylor’s songs all sound the same. Would the data bear that pattern out?</p>
+<p>Usually when I find data on Kaggle, it’s been thoroughly picked over. However, luckily for me, only one person had analyzed these data! I thought it might be interesting to look for patterns in Taylor’s music.</p>
+<p>My running theory for the past decade is that Taylor’s songs all sound the same. This belief has gotten me into more than a few arguments with friends. Would the data prove me right?</p>
 <p>Speficially, this analysis seeks to answer the following questions:</p>
 <ol style="list-style-type: decimal">
 <li>Did the length of Taylor’s songs change over time?</li>
 <li>Did the complexity of songs change over time?</li>
-<li>Do Taylor’s songs tend to coalesce around a few topics? If so, how might we charcterize those topics?</li>
+<li>Do Taylor’s songs generally cover a few topics? If so, how might we charcterize those topics?</li>
 <li>Does a trend exist between song topic and song year released?</li>
 </ol>
 <p>Before we dive into the analysis, let’s run a few quality checks on the data.</p>
 <ol style="list-style-type: decimal">
 <li>How many records do we have here?</li>
 </ol>
-<pre><code>## [1] 7</code></pre>
+<pre><code>## [1] 94</code></pre>
+<p>The data contains 94 unique songs. Each year appears to represent an album.</p>
 <ol start="2" style="list-style-type: decimal">
 <li>Is Taylor Swift the only artist represented in the data?</li>
 </ol>
@@ -313,16 +314,16 @@
 ## [93] Call It What You Want                        
 ## [94] New Year&#39;s Day                               
 ## 94 Levels: ...Ready for It? 22 ... You&#39;re Not Sorry</code></pre>
-<p>The data needs pre-processing, which includes removing stopwords and special characters and coercing every word to lowercase. Removing stopwords is a typical natural language processing task, but it gives me some anxiety because some of Taylor’s most prominent songs (such as “You Belong With Me”) contain stopwords (“You”, “With”, “Me”).</p>
-<p>In the original dataset, every row contains one song lyric, which is not ideal from a data tidyness point of view. The steps are hidden from view, but I end up with a reshaped dataset.</p>
+<p>The data needs pre-processing, which includes removing stopwords and special characters and coercing every word to lowercase. Removing stopwords is a typical natural language processing task, but it gives me some anxiety because some of Taylor’s most prominent songs (such as “You Belong With Me”) contain stopwords (“You”, “With”, and “Me”).</p>
+<p>In the original dataset, every row contains one song lyric, which is not ideal from a data tidyness point of view. I reshape the data so that one song represents one row.</p>
 <div id="question-1-visualizing-song-length-over-time" class="section level2">
 <h2>Question 1: Visualizing song length over time</h2>
 <p>I’m interpreting song length as the number of unique tokens in a song. Below, I plot the trend of average song length over the years.</p>
 <p><img src="/post/2018-07-25-taylor-swift-song-lyrics_files/figure-html/songlength-1.png" width="672" /></p>
 <p>The graph above shows that the average word count in Taylor’s songs have increased rather steadily over the years.</p>
-<p>This chart does not account for within-year variation. It’s entirely possible that a few songs had high word count in the later years of Taylor’s career, which brought the average up. Let’s look at that within-year variation.</p>
+<p>This chart does not account for within-year variation. It’s entirely possible that a few songs had high especially high or low word counts. Looking at the entire distribution of word counts across songs in a given album would be more informative. Let’s look at that within-year variation.</p>
 <p><img src="/post/2018-07-25-taylor-swift-song-lyrics_files/figure-html/boxplot1-1.png" width="672" /></p>
-<p>The distribution of word counts by song becomes more spread out over the years. Interestingly, small word-count songs get larger as time goes on as well, which suggests that the widening distributions are driven by greater wordiness and not a greater spread over word count length. Taylor released her wordiest songs in 2017. Is this trend a sign that Taylor’s songs are getting more intricate or complex over time?</p>
+<p>The distribution of word counts by song becomes more spread out over the years. Interestingly, small word-count songs have higher word counts as time goes on as well. This trend suggests that the widening distributions are driven by greater wordiness and not a greater spread over word count length. Taylor released her wordiest songs in 2017. Is this trend a sign that Taylor’s songs are getting more intricate or complex over time?</p>
 </div>
 <div id="question-2-visualizing-song-complexity-over-time" class="section level2">
 <h2>Question 2: Visualizing song complexity over time</h2>
@@ -332,17 +333,17 @@
 <li>On average, how many times is a word repeated per song?</li>
 </ol>
 <p><img src="/post/2018-07-25-taylor-swift-song-lyrics_files/figure-html/complexity1-1.png" width="672" /></p>
-<p>The chart above shows that Taylor reached her greatest lexical complecity in 2010. 2010 roughly marks Taylor’s transition from a country music artist to a pop artist. The most notable trend is that as Taylor’s songs skewed more heavily toward the pop music genre, the number of unique words in songs decreased. But again, looking at averages doesn’t get us very far, so let’s take a gander at boxplots.</p>
+<p>The chart above shows that Taylor reached her greatest lexical complexity in 2010, as defined as he highest average number of unique words per song. 2010 also roughly marks Taylor’s transition from a country music artist to a pop artist. The most notable trend is that as Taylor’s songs skewed more heavily toward the pop music genre, the number of unique words in songs decreased. But again, looking at averages doesn’t get us very far, so let’s take a gander at boxplots.</p>
 <p><img src="/post/2018-07-25-taylor-swift-song-lyrics_files/figure-html/boxplot2-1.png" width="672" /></p>
-<p>The distribution of unique words in songs over the years is quite similar, but gets tighter over time.</p>
+<p>The distribution of unique words in songs is quite similar over time, but gets tighter. This visualization suggests that the songs on Taylor’s albums have similar word complexity, and that word complexity has slightly increased over her past two albums.</p>
 <p><img src="/post/2018-07-25-taylor-swift-song-lyrics_files/figure-html/complexity2-1.png" width="672" /></p>
-<p>Word repetition increased dramatically after 2010, and was at its highest in 2014. In 2014, Taylor repeated words on average 2.57 times.</p>
+<p>Word repetition increased dramatically after 2010, and was at its highest in 2014. In 2014, Taylor repeated words on average 2.57 times. High word repetition frequently afflicts pop songs, so I am not surprised that Taylor’s songs have higher word repetition after her transition to pop music.</p>
 </div>
 <div id="question-3-what-topics-are-typically-covered-in-taylors-songs" class="section level2">
 <h2>Question 3: What topics are typically covered in Taylor’s songs?</h2>
 <p>Does Taylor Swift really sing about the same topics, or am I salty? To find out, I use a method called <a href="https://eight2late.wordpress.com/2015/09/29/a-gentle-introduction-to-topic-modeling-using-r/">Latent Dirichlet Allocation (LDA)</a>. LDA is a generative probabilistic model commonly used to model topics in documents.</p>
-<p>LDA assumes that each document is a mixture of topics, and each topic is a mixture of words. It can be used for many different types of analyses. The probabilistic model generated by LDA assigns probabilities to a word falling under a given topic, and to a topic being assigned to a given document.</p>
-<p>I will treat each song as a “document.” Before we dive into the analysis, let’s look at the most frequent songs in her collection.</p>
+<p>LDA assumes that each document is a mixture of topics, and each topic is a mixture of words. It can be used for many different types of analyses. The probabilistic model used in LDA assigns probabilities to a word falling under a given topic, and to a topic being assigned to a given document.</p>
+<p>I will treat each song as a “document.” Before we dive into the analysis, let’s look at the most frequent songs in Taylor’s collection.</p>
 <pre><code>## # A tibble: 1,957 x 2
 ##    word      n
 ##    &lt;chr&gt; &lt;int&gt;
@@ -358,11 +359,12 @@
 ## 10 night    72
 ## # ... with 1,947 more rows</code></pre>
 <p>Unusurpsingly, “love” clocks in at #2. But let’s not throw Taylor under the bus here. Is it really true that all of her songs are about relationships and heartbreaks? Did she really need to reinvent herself in 2017 (and 2014, and 2012… you get the point) to escape that image?</p>
-<p>I used LDA to generate 5 topics, and each topic groups a set of words together. The table below shpws that the topics don’t really have a pattern (but Topic 3 clearly references “Shake it Off”). Topic 2 appears to cover the most romantic ground.</p>
+<p>I used LDA to generate 5 topics, and each topic groups a set of words together. The table below shows that the topics don’t really describe concepts. Some of the topics seem to reference songs more than concepts; Topic 3 clearly references “Shake it Off.” Topic 2 appears to cover the most romantic ground.</p>
 <p>The last bit of analysis I want to cover is determining whether topics occur more frequently over time. Is Taylor releasing songs that fall under a given topic more frequntly? Might the topics represent an album?</p>
 <p><img src="/post/2018-07-25-taylor-swift-song-lyrics_files/figure-html/last-1.png" width="672" /></p>
-<p>“Year” and “Topic” do not appear to be correlated at all. The data show that topics are spead out relatively evenly across years. Topic 5 seems to be very prominent across songs in 2017. From the words assigned high probability to Topic 5, including “wanna,” “feel,” and “game,” might it be the case that these songs are representative of Taylor’s increasing agency?</p>
-<p>LDA revealed much of what I already knew, in that the topics of Taylor Swift’s songs tend to be associated with love, feelings, dreaming (of the romantic sort), etc. I do feel like now I know a little more about the patterns hidden underneath some of her most popular songs, and maybe a little more about what makes them so catchy.</p>
+<p>“Year” and “Topic” do not appear to be correlated at all. The data show that topics are spread out relatively evenly across years. Topic 5 seems to be very prominent across songs in 2017. Looking at the words assigned high probability to Topic 5, including “wanna,” “feel,” and “game,” might it be the case that songs falling under that category represent a lighter tone, or a shift in the way Taylor references her agency?</p>
+<p>The LDA analysis revealed much of what I already knew, in that the topics of Taylor Swift’s songs tend to be associated with love, feelings, dreaming (of the romantic sort), etc. The exploratory analysis shows that Taylor’s songs became wordier over time, but seem to suffer from the “song compression” phenomenon and aren’t actually using a diversity of words.</p>
+<p>I do feel like now I know a little more about the patterns hidden underneath some of her most popular songs, and maybe a little more about what makes them so catchy. I hope this analysis inspires you to take a deep dive into the parts of pop culture you most enjoy!</p>
 </div>
 
       </article>
