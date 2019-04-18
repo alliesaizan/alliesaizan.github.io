@@ -17,7 +17,7 @@ library(topicmodels)
 library(highcharter)
 
 # Load data and stopwords
-dat <- read.csv("/Users/alliesaizan/Documents/R Tinkering/TSwift Lyrics/taylor_swift_lyrics.csv")
+dat <- read.csv("/Users/alliesaizan/Documents/R-Tinkering/TSwift Lyrics/taylor_swift_lyrics.csv")
 dat$lyric <- as.character(dat$lyric)
 data("stop_words")
 
@@ -26,7 +26,7 @@ data("stop_words")
 ### A text analysis of Taylor Swift's discography
 
 ``` {r image, out.width = "200px", echo = FALSE}
-knitr::include_graphics("/Users/alliesaizan/Documents/R Tinkering/TSwift Lyrics/Taylor_Swift_Cavendish.jpeg")
+knitr::include_graphics("/Users/alliesaizan/Documents/R-Tinkering/TSwift Lyrics/Taylor_Swift_Cavendish.jpg")
 ```
 
 
@@ -137,7 +137,7 @@ The distribution of word counts by song becomes more spread out over the years. 
 
 ## Question 2: Visualizing song complexity over time
 
-I define "song conplexity" as the number of unique non-stopword words per song. I look at song complexity from two differnet angles: 
+I define "song conplexity" as the number of unique non-stopword words per song. I look at song complexity from two different angles: 
 
 1. On average, how many unique words appear per song per year?
 2. On average, how many times is a word repeated per song?
@@ -226,7 +226,7 @@ Unusurpsingly, "love" clocks in at #2. But let's not throw Taylor under the bus 
 
 ``` {r lda, include = FALSE}
 k <- 5 
-ldaOut.terms <- read.csv(file=paste("/Users/alliesaizan/Documents/R Tinkering/TSwift Lyrics/LDAGibbs_k=",k,"_TopicsToTerms.csv"))
+ldaOut.terms <- read.csv(file=paste("/Users/alliesaizan/Documents/R-Tinkering/TSwift Lyrics/LDAGibbs_k=",k,"_TopicsToTerms.csv"))
 #topicProbabilities <- read.csv(file=paste0("LDAGibbs_k=",k,"_TopicProbabilities.csv"))
 #topic1ToTopic2 <- read.csv(file=paste0("LDAGibbs_k=",k,"_Topic1ToTopic2.csv"))
 
@@ -234,7 +234,7 @@ ldaOut.terms <- read.csv(file=paste("/Users/alliesaizan/Documents/R Tinkering/TS
 
 I used LDA to generate 5 topics, and each topic groups a set of words together. The table below shpws that the topics don't really have a pattern (but Topic 3 clearly references "Shake it Off"). Topic 2 appears to cover the most romantic ground.
 
-``` {r terms, include = FALSE}
+``` {r terms, echo = FALSE}
 ldaOut.terms <- ldaOut.terms[,2:length(ldaOut.terms)]
 
 ldaOut.terms
@@ -243,7 +243,7 @@ ldaOut.terms
 The last bit of analysis I want to cover is determining whether topics occur more frequently over time. Is Taylor releasing songs that fall under a given topic more frequntly? Might the topics represent an album?
 
 ``` {r last, echo = FALSE, warning = FALSE, message = FALSE}
-ldaOut.topics <- read.csv(file=paste("/Users/alliesaizan/Documents/R Tinkering/TSwift Lyrics/LDAGibbs_k=",k,"_Topics.csv"))
+ldaOut.topics <- read.csv(file=paste("/Users/alliesaizan/Documents/R-Tinkering/TSwift Lyrics/LDAGibbs_k=",k,"_Topics.csv"))
 topics <- data.frame(ldaOut.topics)
 
   # Merge topics by song category to main data frame
@@ -254,12 +254,14 @@ plotting <- datV2 %>%
               select(year, V1) %>%
               group_by(year,V1) %>%
               summarise(count = n())
+plotting$V1 <- factor(plotting$V1)
 
-  # Plot results
-hchart(plotting, "line", hcaes(x = year, y = count, group = V1), 
-  color = c("#815BFF","#957FEF","#DEC0F1","#EFD9CE","#2F242C")) %>%
-  hc_title(text = "Topics Across Years") %>%
-  hc_add_theme(hc_theme_flat())
+ggplot(plotting) + 
+  geom_line(aes(x = year, y = count, colour = V1)) + 
+  theme_classic() +  scale_x_continuous(labels = unique(plotting$year)) +
+  scale_colour_manual(name = "Topics", values = c("#815BFF","#957FEF","#DEC0F1","#EFD9CE","#2F242C")) +
+  labs(title = "Topics Across Years", x = "Year", y = "Count") +
+  theme(plot.title = element_text(hjust = 0.5, face = "bold"))
 
 ```
 

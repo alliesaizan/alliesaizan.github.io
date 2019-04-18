@@ -225,13 +225,13 @@ The outcome that answers this question is “number of appearances since charact
 <p>To minimize overfitting, I need to pick a complexity parameter that minimizes the tree’s error. The complexity parameter controls the size of the tree (the number of splits) such that the tree is at its optimal size. Looking at the CP plot below, where we plot the different values of the complexity parameter against the cross validation error, a CP value of 0.01 appears to generate the smallest cross validation error. Inspecting the the fit summary shows that the tree is already set at CP parameter of 0.01.</p>
 <p>How well does this tree predict the success of unseen characters?</p>
 <pre><code>## prediction
-## 11.7762557077626  22.233238904627  37.287037037037 67.7065868263473 
-##            12761             2395              489              468 
-## 79.2173913043478 201.416666666667 293.666666666667 561.615384615385 
-##               50               38               43               45</code></pre>
+## 14.2746957766643 20.6893353941267 83.2477876106195           184.48 
+##            14024             1500              564              161 
+## 518.416666666667 
+##               40</code></pre>
 <p>Taking a look at the matrix of predictions, the predicted number of appearances does not vary much between different observations in the test set. The model predicts that most characters in the test set will have a low number of appearances. How does the prediction matrix compare to actual appearances in the test set?</p>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
-##    1.00    1.00    4.00   19.27   10.00 3360.00    1022</code></pre>
+##    1.00    1.00    4.00   18.51   10.00 3061.00    1016</code></pre>
 <p><img src="/post/2018-10-30-what-makes-a-comic-character-successful_files/figure-html/compare-1.png" width="672" /></p>
 <p>The average number of appearances skews low. The boxplot above shows that most characters have few appearances (as might be expected by publishers introducing one-hit wonders for particular storylines, for instance). The lack of options for appearances suggests that the model may have overfitted the training set; that is, the rules used to generate the regression tree on the training data may not generalize well to new data. Random forest modeling presents an alternative to regression tree modeling that is more robust to overfitting.</p>
 </div>
