@@ -235,7 +235,7 @@ ldaOut.terms <- read.csv(file=paste("/Users/alliesaizan/Documents/R-Tinkering/TS
 I used LDA to generate 5 topics, and each topic groups a set of words together. The table below shpws that the topics don't really have a pattern (but Topic 3 clearly references "Shake it Off"). Topic 2 appears to cover the most romantic ground.
 
 ``` {r terms, echo = FALSE}
-ldaOut.terms <- ldaOut.terms[,2:length(ldaOut.terms)]
+ldaOut.terms <- ldaOut.terms[,1:length(ldaOut.terms)]
 
 ldaOut.terms
 ```

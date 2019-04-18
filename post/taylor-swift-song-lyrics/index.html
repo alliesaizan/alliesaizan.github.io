@@ -243,15 +243,15 @@ Usually when I find data on Kaggle, it’s been thoroughly picked over. However,
 ##  8 yeah     80
 ##  9 ey       72
 ## 10 night    72
-## # ... with 1,947 more rows</code></pre>
+## # … with 1,947 more rows</code></pre>
 <p>Unusurpsingly, “love” clocks in at #2. But let’s not throw Taylor under the bus here. Is it really true that all of her songs are about relationships and heartbreaks? Did she really need to reinvent herself in 2017 (and 2014, and 2012… you get the point) to escape that image?</p>
 <p>I used LDA to generate 5 topics, and each topic groups a set of words together. The table below shows that the topics don’t really describe concepts. Some of the topics seem to reference songs more than concepts; Topic 3 clearly references “Shake it Off.” Topic 2 appears to cover the most romantic ground.</p>
-<pre><code>##   Topic.2 Topic.3 Topic.4 Topic.5
-## 1    love     ooh    girl    feel
-## 2    time   shake    home   wanna
-## 3    stay    call     eye    yeah
-## 4    hand    wait   forev   light
-## 5     bad   gonna    hold    game</code></pre>
+<pre><code>##   Topic.1 Topic.2 Topic.3 Topic.4 Topic.5
+## 1   night    love     ooh    girl    feel
+## 2     day    time   shake    home   wanna
+## 3  rememb    stay    call     eye    yeah
+## 4    babi    hand    wait   forev   light
+## 5   dream     bad   gonna    hold    game</code></pre>
 <p>The last bit of analysis I want to cover is determining whether topics occur more frequently over time. Is Taylor releasing songs that fall under a given topic more frequntly? Might the topics represent an album?</p>
 <p><img src="/post/2018-07-25-taylor-swift-song-lyrics_files/figure-html/last-1.png" width="672" /></p>
 <p>“Year” and “Topic” do not appear to be correlated at all. The data show that topics are spread out relatively evenly across years. Topic 5 seems to be very prominent across songs in 2017. Looking at the words assigned high probability to Topic 5, including “wanna,” “feel,” and “game,” might it be the case that songs falling under that category represent a lighter tone, or a shift in the way Taylor references her agency?</p>
