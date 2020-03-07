@@ -19,7 +19,7 @@ In that spirit, my first post will focus on how comic book characters have chang
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="In That Number" />
 
-  <meta name="generator" content="Hugo 0.36.1" />
+  <meta name="generator" content="Hugo 0.25.1" />
   <link rel="canonical" href="https://alliesaizan.github.io/post/a-dive-into-comics-data/" />
   <link rel="alternate" href="https://alliesaizan.github.io/index.xml" type="application/rss+xml" title="In That Number">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -112,6 +112,8 @@ In that spirit, my first post will focus on how comic book characters have chang
                 
                   <a href="/post/2018-07-25-taylor-swift-song-lyrics">Teardrops on my Data Frames</a>
                 
+                  <a href="/post/2018-10-30-what-makes-a-comic-character-successful">What makes a comic character successful?</a>
+                
               </div>
             </li>
           
@@ -119,12 +121,6 @@ In that spirit, my first post will focus on how comic book characters have chang
           
             <li>
               <a title="About" href="/page/about/">About</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Tags" href="/tags">Tags</a>
             </li>
           
         
@@ -191,52 +187,50 @@ In that spirit, my first post will focus on how comic book characters have chang
         <p>Comic books have been an important part of my life for the past decade. They have figured differently in my life over time, but nonetheless have maintained a lasting influence over my pop culture choices.</p>
 <p>In that spirit, my first post will focus on how comic book characters have changed throughout history. In particular, I will focus on how gender and sexuality representation has changed over time. For this analysis, I am using a comics database from 538’s Github page. 23,272 comic book characters appear in this database. The database covers years 1939-2015.</p>
 <p>There are no duplicate characters, and for the most part, characters are identified by their “legal” names, not by their superhero aliases. As the list of the first 25 characters below shows, the most popular characters (such as Spider-Man) are listed with both their fake and legal names.</p>
-<pre><code>##  [1] Spider-Man (Peter Parker)            
-##  [2] Captain America (Steven Rogers)      
-##  [3] Wolverine (James \\&quot;Logan\\&quot; Howlett)
-##  [4] Iron Man (Anthony \\&quot;Tony\\&quot; Stark)  
-##  [5] Thor (Thor Odinson)                  
-##  [6] Benjamin Grimm (Earth-616)           
-##  [7] Reed Richards (Earth-616)            
-##  [8] Hulk (Robert Bruce Banner)           
-##  [9] Scott Summers (Earth-616)            
-## [10] Jonathan Storm (Earth-616)           
-## [11] Henry McCoy (Earth-616)              
-## [12] Susan Storm (Earth-616)              
-## [13] Namor McKenzie (Earth-616)           
-## [14] Ororo Munroe (Earth-616)             
-## [15] Clinton Barton (Earth-616)           
-## [16] Matthew Murdock (Earth-616)          
-## [17] Stephen Strange (Earth-616)          
-## [18] Mary Jane Watson (Earth-616)         
-## [19] John Jonah Jameson (Earth-616)       
-## [20] Robert Drake (Earth-616)             
-## [21] Henry Pym (Earth-616)                
-## [22] Charles Xavier (Earth-616)           
-## [23] Warren Worthington III (Earth-616)   
-## [24] Piotr Rasputin (Earth-616)           
-## [25] Wanda Maximoff (Earth-616)           
-## 23272 Levels: &#39;Spinner (Earth-616) ...</code></pre>
+<pre><code>##  [1] &quot;Spider-Man (Peter Parker)&quot;              
+##  [2] &quot;Captain America (Steven Rogers)&quot;        
+##  [3] &quot;Wolverine (James \\\&quot;Logan\\\&quot; Howlett)&quot;
+##  [4] &quot;Iron Man (Anthony \\\&quot;Tony\\\&quot; Stark)&quot;  
+##  [5] &quot;Thor (Thor Odinson)&quot;                    
+##  [6] &quot;Benjamin Grimm (Earth-616)&quot;             
+##  [7] &quot;Reed Richards (Earth-616)&quot;              
+##  [8] &quot;Hulk (Robert Bruce Banner)&quot;             
+##  [9] &quot;Scott Summers (Earth-616)&quot;              
+## [10] &quot;Jonathan Storm (Earth-616)&quot;             
+## [11] &quot;Henry McCoy (Earth-616)&quot;                
+## [12] &quot;Susan Storm (Earth-616)&quot;                
+## [13] &quot;Namor McKenzie (Earth-616)&quot;             
+## [14] &quot;Ororo Munroe (Earth-616)&quot;               
+## [15] &quot;Clinton Barton (Earth-616)&quot;             
+## [16] &quot;Matthew Murdock (Earth-616)&quot;            
+## [17] &quot;Stephen Strange (Earth-616)&quot;            
+## [18] &quot;Mary Jane Watson (Earth-616)&quot;           
+## [19] &quot;John Jonah Jameson (Earth-616)&quot;         
+## [20] &quot;Robert Drake (Earth-616)&quot;               
+## [21] &quot;Henry Pym (Earth-616)&quot;                  
+## [22] &quot;Charles Xavier (Earth-616)&quot;             
+## [23] &quot;Warren Worthington III (Earth-616)&quot;     
+## [24] &quot;Piotr Rasputin (Earth-616)&quot;             
+## [25] &quot;Wanda Maximoff (Earth-616)&quot;</code></pre>
 <p>What kind of features are represented in the data?</p>
 <pre><code>## Observations: 23,272
-## Variables: 17
-## $ X                &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, …
-## $ publisher        &lt;fct&gt; Marvel, Marvel, Marvel, Marvel, Marvel, Marvel,…
-## $ page_id          &lt;int&gt; 1678, 7139, 64786, 1868, 2460, 2458, 2166, 1833…
-## $ name             &lt;fct&gt; Spider-Man (Peter Parker), Captain America (Ste…
-## $ urlslug          &lt;fct&gt; \/Spider-Man_(Peter_Parker), \/Captain_America_…
-## $ id               &lt;fct&gt; Secret Identity, Public Identity, Public Identi…
-## $ align            &lt;fct&gt; Good Characters, Good Characters, Neutral Chara…
-## $ eye              &lt;fct&gt; Hazel Eyes, Blue Eyes, Blue Eyes, Blue Eyes, Bl…
-## $ hair             &lt;fct&gt; Brown Hair, White Hair, Black Hair, Black Hair,…
-## $ sex              &lt;fct&gt; Male Characters, Male Characters, Male Characte…
-## $ gsm              &lt;fct&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
-## $ alive            &lt;fct&gt; Living Characters, Living Characters, Living Ch…
-## $ appearances      &lt;int&gt; 4043, 3360, 3061, 2961, 2258, 2255, 2072, 2017,…
-## $ first_appearance &lt;fct&gt; &quot;1962, August&quot;, &quot;1941, March&quot;, &quot;1974, October&quot;,…
-## $ month            &lt;fct&gt; August, March, October, March, November, Novemb…
-## $ year             &lt;int&gt; 1962, 1941, 1974, 1963, 1950, 1961, 1961, 1962,…
-## $ date             &lt;fct&gt; 1962-08-01, 1941-03-01, 1974-10-01, 1963-03-01,…</code></pre>
+## Variables: 16
+## $ publisher        &lt;chr&gt; &quot;Marvel&quot;, &quot;Marvel&quot;, &quot;Marvel&quot;, &quot;Marvel&quot;, &quot;Marvel&quot;, &quot;M…
+## $ page_id          &lt;int&gt; 1678, 7139, 64786, 1868, 2460, 2458, 2166, 1833, 294…
+## $ name             &lt;chr&gt; &quot;Spider-Man (Peter Parker)&quot;, &quot;Captain America (Steve…
+## $ urlslug          &lt;chr&gt; &quot;\\/Spider-Man_(Peter_Parker)&quot;, &quot;\\/Captain_America_…
+## $ id               &lt;chr&gt; &quot;Secret Identity&quot;, &quot;Public Identity&quot;, &quot;Public Identi…
+## $ align            &lt;chr&gt; &quot;Good Characters&quot;, &quot;Good Characters&quot;, &quot;Neutral Chara…
+## $ eye              &lt;chr&gt; &quot;Hazel Eyes&quot;, &quot;Blue Eyes&quot;, &quot;Blue Eyes&quot;, &quot;Blue Eyes&quot;,…
+## $ hair             &lt;chr&gt; &quot;Brown Hair&quot;, &quot;White Hair&quot;, &quot;Black Hair&quot;, &quot;Black Hai…
+## $ sex              &lt;chr&gt; &quot;Male Characters&quot;, &quot;Male Characters&quot;, &quot;Male Characte…
+## $ gsm              &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+## $ alive            &lt;chr&gt; &quot;Living Characters&quot;, &quot;Living Characters&quot;, &quot;Living Ch…
+## $ appearances      &lt;int&gt; 4043, 3360, 3061, 2961, 2258, 2255, 2072, 2017, 1955…
+## $ first_appearance &lt;chr&gt; &quot;1962, August&quot;, &quot;1941, March&quot;, &quot;1974, October&quot;, &quot;196…
+## $ month            &lt;chr&gt; &quot;August&quot;, &quot;March&quot;, &quot;October&quot;, &quot;March&quot;, &quot;November&quot;, &quot;…
+## $ year             &lt;int&gt; 1962, 1941, 1974, 1963, 1950, 1961, 1961, 1962, 1963…
+## $ date             &lt;date&gt; 1962-08-01, 1941-03-01, 1974-10-01, 1963-03-01, 195…</code></pre>
 <p>DC and Marvel both have steadily increased the number of new characters introduced each year. However, over the past 70 years, DC has published more new characters each year than Marvel. This discrepancy is likely caused by a 1986 reboot which released new instantiations of many DC characters. The historgram below reflects this spike.</p>
 <p><img src="/post/2018-02-20-a-dive-into-comics-data_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>DC has released an especially high number of characters coinciding with the “New 52” series, indicated by the largest post-2000 spike. After years of falling sales DC chose to follow the Marvel model and reboot its major characters. Such a massive reboot generally follows an all-encompassing galactic soap opera, which retcons the entire universe of character storylines. Is the practice of “retconning” correlated with a more diverse array of characters?</p>
@@ -277,7 +271,7 @@ In that spirit, my first post will focus on how comic book characters have chang
         <ul class="list-inline text-center footer-links">
           
               <li>
-                <a href="https://github.com/https://github.com/alliesaizan" title="GitHub">
+                <a href="https://github.com/alliesaizan" title="GitHub">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -285,7 +279,7 @@ In that spirit, my first post will focus on how comic book characters have chang
                 </a>
               </li>
               <li>
-                <a href="https://linkedin.com/in/https://www.linkedin.com/in/alexandra-saizan/" title="LinkedIn">
+                <a href="https://linkedin.com/in/alexandra-saizan/" title="LinkedIn">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
@@ -315,7 +309,7 @@ In that spirit, my first post will focus on how comic book characters have chang
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.36.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.25.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

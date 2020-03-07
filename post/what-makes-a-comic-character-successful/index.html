@@ -19,7 +19,7 @@ The outcome that answers this question is “number of appearances since charact
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="In That Number" />
 
-  <meta name="generator" content="Hugo 0.36.1" />
+  <meta name="generator" content="Hugo 0.25.1" />
   <link rel="canonical" href="https://alliesaizan.github.io/post/what-makes-a-comic-character-successful/" />
   <link rel="alternate" href="https://alliesaizan.github.io/index.xml" type="application/rss+xml" title="In That Number">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
@@ -112,6 +112,8 @@ The outcome that answers this question is “number of appearances since charact
                 
                   <a href="/post/2018-07-25-taylor-swift-song-lyrics">Teardrops on my Data Frames</a>
                 
+                  <a href="/post/2018-10-30-what-makes-a-comic-character-successful">What makes a comic character successful?</a>
+                
               </div>
             </li>
           
@@ -119,12 +121,6 @@ The outcome that answers this question is “number of appearances since charact
           
             <li>
               <a title="About" href="/page/about/">About</a>
-            </li>
-          
-        
-          
-            <li>
-              <a title="Tags" href="/tags">Tags</a>
             </li>
           
         
@@ -225,15 +221,11 @@ The outcome that answers this question is “number of appearances since charact
 <p>To minimize overfitting, I need to pick a complexity parameter that minimizes the tree’s error. The complexity parameter controls the size of the tree (the number of splits) such that the tree is at its optimal size. Looking at the CP plot below, where we plot the different values of the complexity parameter against the cross validation error, a CP value of 0.01 appears to generate the smallest cross validation error. Inspecting the the fit summary shows that the tree is already set at CP parameter of 0.01.</p>
 <p>How well does this tree predict the success of unseen characters?</p>
 <pre><code>## prediction
-## 8.42565445026178  17.646645021645  41.768115942029 47.9346153846154 
-##             9620             4570              510             1210 
-## 100.264150943396            122.3          168.625 239.489795918367 
-##              130              101               21              105 
-##            742.8 
-##               22</code></pre>
+## 14.0846570734442 20.6341463414634 96.8395348837209 
+##            13540             1838              911</code></pre>
 <p>Taking a look at the matrix of predictions, the predicted number of appearances does not vary much between different observations in the test set. The model predicts that most characters in the test set will have a low number of appearances. How does the prediction matrix compare to actual appearances in the test set?</p>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
-##    1.00    1.00    4.00   18.64   10.00 3360.00    1031</code></pre>
+##    1.00    1.00    4.00   18.46   10.00 4043.00    1028</code></pre>
 <p><img src="/post/2018-10-30-what-makes-a-comic-character-successful_files/figure-html/compare-1.png" width="672" /></p>
 <p>The average number of appearances skews low. The boxplot above shows that most characters have few appearances (as might be expected by publishers introducing one-hit wonders for particular storylines, for instance). The lack of options for appearances suggests that the model may have overfitted the training set; that is, the rules used to generate the regression tree on the training data may not generalize well to new data. Random forest modeling presents an alternative to regression tree modeling that is more robust to overfitting.</p>
 </div>
@@ -242,7 +234,9 @@ The outcome that answers this question is “number of appearances since charact
 <p>Random forest modeling builds a great many decision trees using samples of the data, aggregates those trees (hence the “forest” moniker), and averages the prediction for the response variable for continuous outcomes. At each node of a given tree, the algorithm chooses a random sample of predictors to make the next split. Random Forest modeling is robust to out-of-sample (test) data and can provide interesting insights into variable importance.</p>
 <p>Unfortunately, R’s random forest function (randomForest) only accepts data with no missing values. But I am not in luck; the visualization below shows that the comics data is missing in many places. The <em>Secret_Identity</em> variable suffers the most from missingness.</p>
 <p><img src="/post/2018-10-30-what-makes-a-comic-character-successful_files/figure-html/showmissing-1.png" width="672" /></p>
-<p>I deal with missings in the following way: - For continuous variables, I replace missings with the median value. - For binary variables, I replace missing values with zero.</p>
+<p>I deal with missings in the following way:
+- For continuous variables, I replace missings with the median value.
+- For binary variables, I replace missing values with zero.</p>
 <p>Now, I can run the random forest algorithm on my new, imputed data set.</p>
 <p><img src="/post/2018-10-30-what-makes-a-comic-character-successful_files/figure-html/importance-1.png" width="672" /></p>
 <p>The random forest package produces two measures of variable importance: percent increasing mean squared error, and increase in node purity.</p>
@@ -279,7 +273,7 @@ The outcome that answers this question is “number of appearances since charact
         <ul class="list-inline text-center footer-links">
           
               <li>
-                <a href="https://github.com/https://github.com/alliesaizan" title="GitHub">
+                <a href="https://github.com/alliesaizan" title="GitHub">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-github fa-stack-1x fa-inverse"></i>
@@ -287,7 +281,7 @@ The outcome that answers this question is “number of appearances since charact
                 </a>
               </li>
               <li>
-                <a href="https://linkedin.com/in/https://www.linkedin.com/in/alexandra-saizan/" title="LinkedIn">
+                <a href="https://linkedin.com/in/alexandra-saizan/" title="LinkedIn">
                   <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
@@ -317,7 +311,7 @@ The outcome that answers this question is “number of appearances since charact
         </p>
         
         <p class="credits theme-by text-muted">
-          <a href="http://gohugo.io">Hugo v0.36.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          <a href="http://gohugo.io">Hugo v0.25.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
           
         </p>
       </div>

@@ -22,8 +22,9 @@ pygmentCodeFences = true
 
 [Author]
   name = "Allie Saizan"
-  github = "https://github.com/alliesaizan"
-  linkedin = "https://www.linkedin.com/in/alexandra-saizan-1ba20a65/"
+  github = "alliesaizan"
+  linkedin = "alexandra-saizan/"
+
 
 
 [[menu.main]]
@@ -36,7 +37,6 @@ pygmentCodeFences = true
     url = "page/about/"
     weight = 3
 
-
 [[menu.main]]
     parent = "Blog"
     name = "My first post"
@@ -45,10 +45,10 @@ pygmentCodeFences = true
 
 [[menu.main]]
     parent = "Blog"
-    name = "A first dive into comics data"
+    name = "A dive into comics data"
     url = "post/2018-02-20-a-dive-into-comics-data"
     weight = 2
-    
+
 [[menu.main]]
     parent = "Blog"
     name = "Teardrops on my Data Frames"
@@ -56,7 +56,9 @@ pygmentCodeFences = true
     weight = 3
 
 [[menu.main]]
-    name = "Tags"
-    url = "tags"
-    weight = 3
+    parent = "Blog"
+    name = "What makes a comic character successful?"
+    url = "post/2018-10-30-what-makes-a-comic-character-successful"
+    weight = 4
+
 
