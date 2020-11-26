@@ -11,12 +11,12 @@
   <title>Blog Post</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../../css/footer-style.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet"/>
 
   <!-- Custom styles for this template -->
-  <link href="css/blog-post.css" rel="stylesheet">
+  <link href="../css/blog-post.css" rel="stylesheet">
 
 </head>
 
@@ -38,7 +38,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../../about">About</a>
+            <a class="nav-link" href="../../about/">About</a>
           </li>
         </ul>
       </div>
@@ -59,19 +59,23 @@
         <hr>
 
         <!-- Date/Time -->
-        <p>November 27, 2020</p>
+        <p>November 23, 2020</p>
 
         <hr>
 
         <!-- Preview Image -->
-        <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="">
+        <img class="img-fluid rounded" src="../../img/coffee-pic.jpg">
 
         <hr>
 
         <!-- Post Content -->
-        <p>For about two years now, I have been deeply interested in the fields of AI ethics. I've been a data scientist for about four years now, and my most meaningful work has been in the "data science for good" space. As I was getting more involved in the data science community, I noticed practioncers place an especially strong emphasis on how we can use big data and machine learning to advance social progress. But what I've come to realize is more important is recognizing and mitgating the harms that data science can cause when implemented carelessly. What happens when those "data science for good" projects don't outweigh the bias, privacy, and security impacts that machine learning also brings?</p>
+        <p>For about two years now, I have been deeply interested in the fields of AI ethics. I've been a data scientist for about four years, and my most meaningful work has been in the "data science for good" space. As I was getting more involved in the data science community, I noticed practitioners place an especially strong emphasis on how we can use big data and machine learning to advance social progress. But what I've come to realize is more important is recognizing and mitigating the harms that data science can cause when implemented carelessly. I think it's incumbent upon data scientists think of themselves as political actors whose decisions have wide-ranging impacts, even on projects that begin with positive intentions.</p>
 
-        <p>My interest in the AI ethics field was galvanized by the groundbreaking ProPublica <a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">COMPAS report</a> that demonstrated racial bias in recidivism predictions.</p>
+        <p>My interest in the AI ethics field was galvanized by the groundbreaking ProPublica <a href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing">COMPAS report</a> that demonstrated racial bias in the recidivism predictions employed by state government. Though I was developing and implementing machine learning models, I was not thinking about opportunities for harm in high-impact areas. What moved me the most was the prospect of disparate impact at scale; an automated decision system with wide reach can pose a greater threat than a human making the same decision. Bias in ML compounded on my interest in dicrimination in labor economics and more generally in my advocacy work for social justice.</p>
+
+        <p>As I read more articles documenting algorithmic bias in situations comical (the Tay chatbot) and somber (predictive policing), I became more certain that I wanted to transition my professional ambitions towards designing safe, fair ML systems and policy that ensures those systems are fair when companies cannot be trusted to self-regulate. By the time the ProPublica article came out, I was already years behind the curve. The Fairness, Accountability, and Transparency in Machine Learning (FAT ML) community has been active since the early 2010s. I read dozens of articles but still felt ambiguity about which area of fair ML research most aligned to my interests. A trip to the 2019 NeurIPS AI for Social Good workshop cemented that the field was a thriving space with many areas to contribute. So how could I make the most positive impact using my skills and interests?</p>
+
+        <p>I am developing this blog as a way to sort my thoughts on emerging AI fairness research. My goal is to better understand the state of the field and narrow down my interest areas enough that I have ledes for future research. I've got a soft goal of applying for a doctoral program in a field that would enable me to study this topic deeper, and I don't want to embark on that journey without a firm footing in my research interests. This blog will summarize news articles, talks, documentaries, and research papers both so that I can get a firmer grasp on where I fit into the field, and so that others have this resource if they want to learn more about AI fairness. I am hopeful that I will update this blog on a regular basis (~1x a week) with a goal of increasing post frequency when I develop a cadence. By this time next year, maybe I'll be more of an expert on this topic. I'll at least hope to bring more to the table in responsible AI discussions at work!</p>
 
         <hr>
 
@@ -82,7 +86,7 @@
       <div class="col-md-4">
 
         <!-- Categories Widget -->
-        <div class="card my-4">
+        <!--<div class="card my-4">
           <h5 class="card-header">Categories</h5>
           <div class="card-body">
             <div class="row">
@@ -102,7 +106,7 @@
             
             </div>
           </div>
-        </div>
+        </div>-->
 
         
 
@@ -120,6 +124,7 @@
       <div class="row d-flex justify-content-center">
         <a href="https://github.com/alliesaizan"><i class="fa fa-github-alt"></i></a>
         <a href="https://linkedin.com/in/alexandra-saizan"><i class="fa fa-linkedin"></i></a>  
+        <a href="mailto:alexandra@alexandrasaizan.com"><i class="fa fa-envelope"></i></a>   
       </div>
     </div>
     <!-- /.container -->
@@ -127,8 +132,8 @@
 
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
