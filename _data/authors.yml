@@ -1,0 +1,13 @@
+# Sample Authors
+# Remove file or replace with your own
+
+Alexandra Saizan:
+  name: Alexandra Saizan
+  picture: /images/headshot.jpg
+footer_links:
+  - title: GitHub
+    url: https://github.com/alliesaizan
+    icon: fab fa-github-alt
+  - title: LinkedIn
+    url: https://www.linkedin.com/in/alexandra-saizan/
+    icon: fab fa-linkedin

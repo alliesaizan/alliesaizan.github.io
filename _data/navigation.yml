@@ -1,0 +1,20 @@
+# Sample site navigation bar links
+
+- title: Home
+  url: /
+- title: Posts
+  url: /posts/
+- title: About
+  url: /about/
+- title: CV
+  url: https://docs.google.com/document/d/e/2PACX-1vQTjAwbmRfpbJZgljWxkHGEsKDsl1YtBo7Oc335Z-YiE1dWgRA0Pf6vxS29n-M917fkm0aKD2f5F5PD/pub
+# - title: Categories
+#   url: /categories/
+# - title: Tags
+#   url: /tags/
+# - title: Recipes
+#   url: /recipes/
+- title: Search
+  url: /search/
+# - title: External Page
+#   url: https://the-page.com/you-want-to-link-to.html
