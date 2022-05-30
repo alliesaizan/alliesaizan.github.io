@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<!--
+    So Simple Jekyll Theme 3.2.0
+    Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+    Free for personal and commercial use under the MIT license
+    https://github.com/mmistakes/so-simple-theme/blob/master/LICENSE
+-->
+<html lang="en-US" class="no-js">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+
+  
+    
+    <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>AITA Classifier | In That Number</title>
+<meta name="generator" content="Jekyll v3.9.2" />
+<meta property="og:title" content="AITA Classifier" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A BERT-based text classifier!" />
+<meta property="og:description" content="A BERT-based text classifier!" />
+<link rel="canonical" href="http://localhost:4000/projects/aita-classifier/" />
+<meta property="og:url" content="http://localhost:4000/projects/aita-classifier/" />
+<meta property="og:site_name" content="In That Number" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-05-29T20:00:00-04:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="AITA Classifier" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-05-29T20:00:00-04:00","datePublished":"2022-05-29T20:00:00-04:00","description":"A BERT-based text classifier!","headline":"AITA Classifier","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/projects/aita-classifier/"},"url":"http://localhost:4000/projects/aita-classifier/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  
+
+  <script>
+    /* Cut the mustard */
+    if ( 'querySelector' in document && 'addEventListener' in window ) {
+      document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + 'js';
+    }
+  </script>
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="/assets/css/skins/dark.css">
+  
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i|Lora:400,400i,700,700i">
+  <link rel="alternate" type="application/atom+xml" title="In That Number" href="/atom.xml">
+<!-- start custom head snippets -->
+
+<!-- insert favicons. use http://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+</head>
+
+
+  <body class="layout--post  aita-classifier">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#primary-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+  <div class="navigation-wrapper">
+    <a href="#menu-toggle" id="menu-toggle">Menu</a>
+    <nav id="primary-nav" class="site-nav animated drop">
+      <ul><li><a href="/">Home</a></li><li><a href="/posts/">Posts</a></li><li><a href="/about/">About</a></li><li><a href="https://docs.google.com/document/d/e/2PACX-1vQTjAwbmRfpbJZgljWxkHGEsKDsl1YtBo7Oc335Z-YiE1dWgRA0Pf6vxS29n-M917fkm0aKD2f5F5PD/pub">CV</a></li><li><a href="/search/">Search</a></li></ul>
+    </nav>
+  </div><!-- /.navigation-wrapper -->
+
+
+    <header class="masthead">
+  <div class="wrap">
+    
+    
+    
+      
+        <div class="site-title animated fadeIn"><a href="/">In That Number</a></div>
+      
+      <p class="site-description animated fadeIn" itemprop="description">A blog about data science practice, ethics, and the things in between.</p>
+    
+  </div>
+</header><!-- /.masthead -->
+
+
+    <main id="main" class="main-content" aria-label="Content">
+  <article class="h-entry">
+    
+
+    <div class="page-wrapper">
+      <header class="page-header">
+        
+        
+          <h1 id="page-title" class="page-title p-name">AITA Classifier
+</h1>
+        
+      </header>
+
+      <div class="page-sidebar">
+        <div class="page-author h-card p-author"><div class="author-info">
+    <time class="page-date dt-published" datetime="2022-05-29T20:00:00-04:00"><a class="u-url" href="">May 29, 2022</a>
+</time>
+
+  </div>
+</div>
+
+        
+  <h3 class="page-taxonomies-title">Categories</h3>
+  
+  <ul class="page-taxonomies"><li class="page-taxonomy"><a class="p-category" href="/categories/#projects" title="Pages filed under projects">projects</a></li>
+  </ul>
+
+
+        
+
+      </div>
+
+      <div class="page-content">
+        <div class="e-content">
+          <h1 id="a-bert-based-text-classifier">A BERT-based text classifier!</h1>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#run">How to run this experiment on your machine</a></li>
+  <li><a href="#development">Development process</a></li>
+  <li><a href="#lessons">Lessons learned</a></li>
+</ol>
+
+<h2 id="overview-">Overview <a name="overview"></a></h2>
+<p>Welcome! This application is a small experiment that uses the <a href="https://huggingface.co/distilbert-base-uncased">BERT large language model</a> to classify posts from the <a href="https://www.reddit.com/r/AmItheAsshole/">Am I The Asshole (AITA) subreddit</a>. The model used to generate predictions is actually a small, fast, “distilled” version of the BERT model meant for finetuning ondownstream tasks. Please note, some of the files needed to be zipped to accomodate Git Large File Storage. The raw data <a href="data/raw">folder</a> and <a href="results/">trained model</a> are zip files. You can find the original project structure in my <a href="https://1drv.ms/u/s!AkUOTbaWXaF8gbtE71qCMCRxTM3rvQ?e=RhnEYH">OneDrive folder</a> (view-only!). You can also view this project <a href="https://github.com/alliesaizan/aita-classification">on GitHub</a>.</p>
+
+<p>My motivation for this project was to familiarize myself with the HuggingFace library. I’ve worked with LLMs in personal projects before, and wanted to experiment with the state-of-the-art LLM. I chose AITA data because:</p>
+<ul>
+  <li>Okay, I love reading those stories. Sometimes, there’s just no better way to spend time on the Internet than marveling at the extent of other peoples’ audacity 😅</li>
+  <li>The “Asshole/Not an Asshole” dichotomy was easy to translate into a text classification problem. There are other post categories, like “Everyone Sucks Here”, that indicates the situation is more complex, but I don’t include those posts in this analysis.</li>
+</ul>
+
+<p>This repository is structured as follows:</p>
+
+<ul>
+  <li>data
+    <ul>
+      <li>raw
+        <ul>
+          <li>big-query-aita-aug18-aug19.zip – The results of a SQL query run against a database of reddit posts. The dataset covers all AITA posts from August 2018-2019. Unzip this file to use it.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>results
+    <ul>
+      <li>checkpoint-20238.zip –The final PyTorch text classification model, saved at the last epoch runtime. Unzip this file to use it.</li>
+    </ul>
+  </li>
+  <li>src
+    <ul>
+      <li>transformers-model-train.py – Python file used to train the model. Uses CUDA on GPU</li>
+    </ul>
+  </li>
+  <li>static
+    <ul>
+      <li>icon.png – The AITA header icon</li>
+      <li>style.css – webpage formatting</li>
+    </ul>
+  </li>
+  <li>templates
+    <ul>
+      <li>home.html – Homepage</li>
+      <li>results.html – Webpage for prediction results</li>
+    </ul>
+  </li>
+  <li>Dockerfile – specifies container construction</li>
+  <li>app.py – a Flask application that enables the user to enter a AITA post and classifies whether the original poster (OP) is an asshole or not</li>
+  <li>docer_compose.yaml – Docker-compose file that specifies volume construction</li>
+  <li>requirements_docker.txt – Python libraries used to run the project</li>
+</ul>
+
+<h2 id="how-to-run-this-experiment-on-your-own-machine-">How to run this experiment on your own machine <a name="run"></a></h2>
+<p>Clone this repository to your local machine and open up the command prompt (Windows) or terminal (Mac, Linux). You will need to download the distilled BERT model to the working repository, as Docker-compose will include this folder as a volume. You can download the BERT model by running the command <code class="language-plaintext highlighter-rouge">git clone https://huggingface.co/distilbert-base-uncased</code>; note that it’s about 2.4GB in size so download may take a while!</p>
+
+<p>Ensure Docker is installed on your machine. For Windows, docker-compose will come bundled in the installation. Run <code class="language-plaintext highlighter-rouge">docker-compose up -d --build</code> as a command line operation. The Docker container will build and begin running. You can then navigate to port 5000 on your local machine to view the app!</p>
+
+<h2 id="development-process-">Development process <a name="development"></a></h2>
+
+<p>I obtained the data I used to finetune the model from Google Cloud’s BigQuery service. As mentioned above, the data consists of posts from the AITA subreddit with the flair “Asshole” or “Not the Asshole”. I removed records where the body of the post was blank or deleted (I wonder how Reddit users assess these posts anyways!). The dataset consists of about ~72,000 posts after removing these records. I followed HuggingFace’s <a href="https://huggingface.co/docs/transformers/tasks/sequence_classification">text classification tutorial</a>. Subsequent data preparation tasks include splitting the data into training and tests sets (I used a 75% split), tokenizing the text using the  <code class="language-plaintext highlighter-rouge">AutoTokenizer</code> with BERT as the base model, and transforming the training and test sets into a <a href="https://huggingface.co/docs/datasets/v2.2.1/en/package_reference/main_classes#datasets.Dataset">Dataset object</a>.</p>
+
+<p>I then defined a Data Collator, which creates a bath of examples for the model to process in each step. The <code class="language-plaintext highlighter-rouge">DataCollatorWithPadding</code> class also ensures each text element in a batch is of uniform length. I defined the training hyperparameters to be used during the finetuning process, specifically:</p>
+<ul>
+  <li>Learning rate: 2e-5
+-Batch size for each device: 4</li>
+  <li>Number of training epochs: 3</li>
+  <li>Evaluate results at each epoch: true</li>
+  <li>Save results at each epoch: true</li>
+</ul>
+
+<p>Then it was model training time! Using a GPU, the model training process completed in about 2.5 hours. The training process outputted checkpoint models to the /results directory, and I used the model outputted in the last epoch as my final model. When model training was complete, I began to build the accompanying webapp. The home page, shown below, instructs the user to paste in the text body of an AITA post. When the user hits submit, the app will redirect to the “results” page, which will either output an prediction or will instruct the user to try a different post. Longer posts tend to generate more prediction errors; I didn’t investigate this in the course of development but would revisit this issue in future iterations.</p>
+
+<p><img src="/images/screenshot.jpg" alt="" /></p>
+
+<p>Finally, because just building the final model and app wasn’t enough, I also wanted to take this opportunity to learn more about using Docker. I specified the configuration of the container in the Dockerfile and used the <code class="language-plaintext highlighter-rouge">docker-compose</code> command to set the BERT model up as a volume, build the container, and run it.</p>
+
+<h2 id="lessons-learned-">Lessons learned <a name="lessons"></a></h2>
+<p>I learned quite a lot in the process of developing this application, including:</p>
+<ul>
+  <li>How HuggingFace’s API works</li>
+  <li>How to successfully train a model on GPU</li>
+  <li>How to deploy a model using a Flask app</li>
+  <li>How to deploy that app as a container</li>
+</ul>
+
+<p>The tutorial I used data from HuggingFace’s datasets module. If you want to use a custom dataset, you’ll need to preprocess the data for the downstream transformers classes. Figuring out the correct data format took some trial and error. <a href="https://huggingface.co/transformers/v3.2.0/custom_datasets.html">This post on custom datasets</a> was somewhat helpful, but I eventually figured out that the <code class="language-plaintext highlighter-rouge">Dataset</code> class needed records to be in a dictionary of the form {key: Torch tensor of text encodings at each index, labels: Torch tensor of the labels at each index}. Other text classification packages I’ve used, like gensim and NLTK, required more minimal data preprocessing, but the process of transforming the data manually did give me a little more insight into how the HuggingFace transformers infrastructure works.</p>
+
+<p>I spent some time trying to figure out how to configure CUDA on my 64-bit Windows computer. I do not have much experience with deep learning models, and in the past I haven’t really <em>needed</em> to use my GPU to train simpler (by comparison) clustering or ensemble models. I was able to figure out how to train models on my GPU after concluding that my initial PyTorch and transformers installations were incorrect. However, I ultimately found it more efficient to train the model on a GPU-enabled Google Colab notebook. Amelliorating my anxiety around running up my power bill + a shorter computing duration was certainly worth the small fee to use the notebook. Tip: GPU-enabled notebooks are available for free, but if you exceed predefined limits (by, for example, training complex deep neural networks on large datasets), you are temporarily prohibited from using GPUs to let other users run workloads.</p>
+
+<p>I wanted to ensure the app worked without transformers needing to use the Internet to fetch BERT each time the user runs the app. Volumes helped me figure out how to give my container access to the large BERT files through what’s essentially a virtual hard drive. Volumes don’t increase the size of the containers using them, so they’re a great option for making large datasets available to apps that should otherwise be lightweight.</p>
+
+<p>Thank you for reading! 🎉</p>
+
+        </div>
+
+        
+          <div class="page-share">
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fprojects%2Faita-classifier%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--facebook btn--small"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i> <span>Share</span></a>
+  <a href="https://twitter.com/intent/tweet?text=AITA+Classifier%20http%3A%2F%2Flocalhost%3A4000%2Fprojects%2Faita-classifier%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--twitter btn--small"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> <span>Tweet</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fprojects%2Faita-classifier%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--linkedin btn--small"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> <span>LinkedIn</span></a>
+  <a href="https://reddit.com/submit?title=AITA+Classifier&url=http%3A%2F%2Flocalhost%3A4000%2Fprojects%2Faita-classifier%2F" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" class="btn btn--reddit btn--small"><i class="fab fa-fw fa-reddit" aria-hidden="true"></i> <span>Reddit</span></a>
+</div>
+
+        
+
+        
+
+        <nav class="page-pagination" role="navigation">
+  
+    <a class="page-previous" href="/ai-ethics/original-writing/technical-debt-fairness/">
+      <h4 class="page-pagination-label">Previous</h4>
+      <span class="page-pagination-title">
+        <i class="fas fa-arrow-left"></i> Fairness Issues as a Consequence of Technical Debt
+
+      </span>
+    </a>
+  
+
+  
+</nav>
+
+      </div>
+    </div>
+  </article>
+</main>
+
+
+    <footer id="footer" class="site-footer">
+  <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+<div class="social-icons"><a class="social-icon" href="https://github.com/alliesaizan"><i class="fab fa-github-alt fa-2x" title="GitHub"></i></a><a class="social-icon" href="https://www.linkedin.com/in/alexandra-saizan/"><i class="fab fa-linkedin fa-2x" title="LinkedIn"></i></a></div><div class="copyright">
+    
+      <p>&copy; 2022 In That Number. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://github.com/mmistakes/so-simple-theme" rel="nofollow">So Simple</a>.</p>
+    
+  </div>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"></script>
+
+
+  </body>
+
+</html>
