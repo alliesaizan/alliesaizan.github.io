@@ -6,6 +6,7 @@ categories: projects
 ---
 
 # A BERT-based text classifier!
+![](/images/icon.png)
 
 ## Table of Contents
 1. [Overview](#overview)
@@ -58,7 +59,7 @@ I then defined a Data Collator, which creates a bath of examples for the model t
 
 Then it was model training time! Using a GPU, the model training process completed in about 2.5 hours. The training process outputted checkpoint models to the /results directory, and I used the model outputted in the last epoch as my final model. When model training was complete, I began to build the accompanying webapp. The home page, shown below, instructs the user to paste in the text body of an AITA post. When the user hits submit, the app will redirect to the "results" page, which will either output an prediction or will instruct the user to try a different post. Longer posts tend to generate more prediction errors; I didn't investigate this in the course of development but would revisit this issue in future iterations.
 
-![](/images/screenshot.jpg)
+![](/images/screenshot.png)
 
 Finally, because just building the final model and app wasn't enough, I also wanted to take this opportunity to learn more about using Docker. I specified the configuration of the container in the Dockerfile and used the `docker-compose` command to set the BERT model up as a volume, build the container, and run it. 
 
