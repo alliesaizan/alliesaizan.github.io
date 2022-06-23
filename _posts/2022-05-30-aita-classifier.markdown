@@ -15,9 +15,9 @@ categories: projects
 4. [Lessons learned](#lessons)
 
 ## Overview <a name="overview"></a>
-Welcome! This application is a small experiment that uses the [BERT large language model](https://huggingface.co/distilbert-base-uncased) to classify posts from the [Am I The Asshole (AITA) subreddit](https://www.reddit.com/r/AmItheAsshole/). The model used to generate predictions is actually a small, fast, "distilled" version of the BERT model meant for finetuning ondownstream tasks. Please note, some of the files needed to be zipped to accomodate Git Large File Storage. The raw data [folder](data/raw) and [trained model](results/) are zip files. You can find the original project structure in my [OneDrive folder](https://1drv.ms/u/s!AkUOTbaWXaF8gbtE71qCMCRxTM3rvQ?e=RhnEYH) (view-only!). You can also view this project [on GitHub](https://github.com/alliesaizan/aita-classification).
+Welcome! This application is a small experiment that uses the [BERT large language model](https://huggingface.co/distilbert-base-uncased) to classify posts from the [Am I The Asshole (AITA) subreddit](https://www.reddit.com/r/AmItheAsshole/). The model used to generate predictions is actually a small, fast, "distilled" version of the BERT model meant for finetuning on downstream tasks. Please note, some of the files needed to be zipped to accomodate Git Large File Storage. The raw data [folder](data/raw) and [trained model](results/) are zip files. You can find the original project structure in my [OneDrive folder](https://1drv.ms/u/s!AkUOTbaWXaF8gbtE71qCMCRxTM3rvQ?e=RhnEYH) (view-only!). You can also view this project [on GitHub](https://github.com/alliesaizan/aita-classification).
 
-My motivation for this project was to familiarize myself with the HuggingFace library. I've worked with LLMs in personal projects before, and wanted to experiment with the state-of-the-art LLM. I chose AITA data because:
+My motivation for this project was to familiarize myself with the HuggingFace library. I've worked with LLMs in personal projects before, and wanted to experiment with a state-of-the-art LLM. I chose AITA data because:
 - Okay, I love reading those stories. Sometimes, there's just no better way to spend time on the Internet than marveling at the extent of other peoples' audacity 😅
 - The "Asshole/Not an Asshole" dichotomy was easy to translate into a text classification problem. There are other post categories, like "Everyone Sucks Here", that indicates the situation is more complex, but I don't include those posts in this analysis.
 
@@ -42,7 +42,7 @@ This repository is structured as follows:
 - requirements_docker.txt -- Python libraries used to run the project
 
 ## How to run this experiment on your own machine <a name="run"></a>
-Clone this repository to your local machine and open up the command prompt (Windows) or terminal (Mac, Linux). You will need to download the distilled BERT model to the working repository, as Docker-compose will include this folder as a volume. You can download the BERT model by running the command `git clone https://huggingface.co/distilbert-base-uncased`; note that it's about 2.4GB in size so download may take a while!
+Clone [this](https://github.com/alliesaizan/aita-classification) repository to your local machine and open up the command prompt (Windows) or terminal (Mac, Linux). You will need to download the distilled BERT model to the working repository, as Docker-compose will include this folder as a volume. You can download the BERT model by running the command `git clone https://huggingface.co/distilbert-base-uncased`; note that it's about 2.4GB in size so download may take a while!
 
 Ensure Docker is installed on your machine. For Windows, docker-compose will come bundled in the installation. Run `docker-compose up -d --build` as a command line operation. The Docker container will build and begin running. You can then navigate to port 5000 on your local machine to view the app!
 
